@@ -1,7 +1,7 @@
 import logging
 from typing import List
 
-from models import ScaleGroup, Key, TransPattern
+from models import ScaleGroup, Key, TransPattern, Pattern
 
 test_pattern = [1, 3, 5]
 test_major_scale = ScaleGroup(
@@ -45,10 +45,24 @@ def get_scales_group(file_path: str) -> ScaleGroup:
     return scale_group
 
 
-# todo считывание паттерна из файла
+def get_pattern(file_path: str) -> Pattern:
+    """Get pattern from the file. Returns it like the list."""
+    file = open(file_path)
+    source = file.readlines()
+    file.close()
+
+    for note in source[1:]:
+        pattern_source = list(map(int, note.split()))
+
+    pattern = Pattern(
+        name=source[0].strip(),
+        pattern=pattern_source
+    )
+
+    return pattern
 
 
-def transpose(pattern: List, scale_group: ScaleGroup) -> List[TransPattern]:
+def transpose(pattern: Pattern, scale_group: ScaleGroup) -> List[TransPattern]:
     """ Transpose pattern to one scale. Return the dict with patterns for all keys of the scale."""
     # todo test
 
@@ -56,10 +70,11 @@ def transpose(pattern: List, scale_group: ScaleGroup) -> List[TransPattern]:
 
     for elem in scale_group.scales:  # todo как тут быть с именованием
         temp_pattern = []
-        for note in pattern:
+        for note in pattern.pattern:
             temp_pattern.append(elem.scale[note - 1])
 
         key_pattern = TransPattern(
+            name=pattern.name,
             key=elem.name,
             pattern=temp_pattern,  # todo как тут аппендить?
         )
@@ -67,7 +82,7 @@ def transpose(pattern: List, scale_group: ScaleGroup) -> List[TransPattern]:
         transposed_pattern.append(key_pattern)
 
     return transposed_pattern
-    #return scale.name todo еще вернуть название группы
+    #return scale.name todo еще вернуть название группы и название паттерна
 
 
 def transpose_output(transposed_pattern):

@@ -12,13 +12,21 @@ class Key:
 
 @dataclass
 class ScaleGroup:
-    """whole scale."""
+    """Whole scale."""
     name: str
     scales: List[Key]
 
 
 @dataclass
+class Pattern:
+    """Pattern with numbers."""
+    name: str
+    pattern: List[int]
+
+
+@dataclass
 class TransPattern:
     """Pattern with transposed notes."""
+    name: str
     key: str
     pattern: List
