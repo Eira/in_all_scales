@@ -1,0 +1,13 @@
+Natural minors
+Am: A B C D E F G A
+Bbm: Bb C Db Eb F Gb Ab Bb
+Bm: B C# D E F# G A B
+Cm: C D Eb F G Ab Bb C
+Dbm: Db Eb F G Ab A G Db
+Dm: D E F G A Bb C D
+Ebm: Eb F Gb Ab Bb B Db Bb
+Em: E F# G A B C D E
+Fm: F G Ab Bb C Db Eb F
+Gbm:Gb Ab A C# Db D E Gb
+Gm: G A Bb C D Eb F G
+Abm: Ab Bb B Db Eb E Gg Ab
