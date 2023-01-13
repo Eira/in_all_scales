@@ -10,4 +10,4 @@ Em: E F# G A B C D E
 Fm: F G Ab Bb C Db Eb F
 Gbm:Gb Ab A C# Db D E Gb
 Gm: G A Bb C D Eb F G
-Abm: Ab Bb B Db Eb E Gg Ab
+Abm: Ab Bb B Db Eb E Gb Ab
