@@ -4,6 +4,13 @@ from typing import List
 
 
 @dataclass
+class ScaleFormula:
+    """Pattern with numbers."""
+    name: str
+    formula: List[int]
+
+
+@dataclass
 class Key:
     """One key in the scale."""
     name: str
@@ -27,6 +34,5 @@ class Pattern:
 @dataclass
 class TransPattern:
     """Pattern with transposed notes."""
-    name: str
     key: str
     pattern: List

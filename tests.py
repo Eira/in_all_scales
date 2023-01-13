@@ -1,5 +1,11 @@
-from index import transpose, get_scales_group, get_pattern
+from index import transpose, get_scales_group, get_pattern, create_scale_group
 from models import ScaleGroup, Key, TransPattern, Pattern
+
+def test_create_scale_group():
+    major_formula = [2, 2, 1, 2, 2, 2, 1]
+    res = create_scale_group('E', major_formula)
+
+    assert res == []
 
 
 def test_get_scales_group_happy_path():
