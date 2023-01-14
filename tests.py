@@ -1,5 +1,5 @@
-from index import transpose, get_scales_group, get_pattern
-from models import ScaleGroup, Key, TransPattern, Pattern
+from index import transpose, get_scales_group, get_pattern, get_scale_formula
+from models import ScaleGroup, Key, TransPattern, Pattern, ScaleFormula
 
 
 def test_get_pattern():
@@ -10,6 +10,17 @@ def test_get_pattern():
     assert res == Pattern(
         name='Pattern 1',
         pattern=[1, 2, 3],
+    )
+
+
+def test_get_scale_formula():
+    scale_name = 'minor'
+
+    res = get_scale_formula(scale_name)
+
+    assert res == ScaleFormula(
+        name='minor',
+        formula=[2, 1, 2, 2, 1, 2, 2],
     )
 
 

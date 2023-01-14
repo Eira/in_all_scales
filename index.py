@@ -25,10 +25,9 @@ major_formula = [2, 2, 1, 2, 2, 2, 1]
 
 def get_pattern(pattern_name: str) -> Pattern:
     """Take from the user pattern name. Return object with name and pattern sequence."""
-    # todo test
     source = {
         'Pattern 1': [1, 2, 3],
-        'Pattern 2': [1, 2, 3, 2, 3, 4]
+        'Pattern 2': [1, 2, 3, 2, 3, 4],
     }.get(pattern_name)
 
     pattern = Pattern(
@@ -38,26 +37,18 @@ def get_pattern(pattern_name: str) -> Pattern:
     return pattern
 
 
-    # """Get pattern from the file. Returns it like the list."""
-    # file = open(file_path)
-    # source = file.readlines()
-    # file.close()
-    #
-    # for note in source[1:]:
-    #     pattern_source = list(map(int, note.split()))
-    #
-    # pattern = Pattern(
-    #     name=source[0].strip(),
-    #     pattern=pattern_source
-    # )
-    #
-    # return pattern
-
-
 def get_scale_formula(scale_name: str) -> ScaleFormula:
     """Take from the user scale name. Return object with name and scale formula sequence."""
-    # todo test
-    ...
+    source = {
+        'major': [2, 2, 1, 2, 2, 2, 1],
+        'minor': [2, 1, 2, 2, 1, 2, 2],
+    }.get(scale_name)
+
+    scale_formula = ScaleFormula(
+        name=scale_name,
+        formula=source,
+    )
+    return scale_formula
 
 
 def get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:

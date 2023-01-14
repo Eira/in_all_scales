@@ -4,6 +4,13 @@ from typing import List
 
 
 @dataclass
+class Pattern:
+    """Pattern with numbers."""
+    name: str
+    pattern: List[int]
+
+
+@dataclass
 class ScaleFormula:
     """Pattern with numbers."""
     name: str
@@ -22,13 +29,6 @@ class ScaleGroup:
     """Whole scale."""
     name: str
     scales: List[Key]
-
-
-@dataclass
-class Pattern:
-    """Pattern with numbers."""
-    name: str
-    pattern: List[int]
 
 
 @dataclass
