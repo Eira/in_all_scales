@@ -136,7 +136,81 @@ def transpose(pattern: Pattern, scale_group: ScaleGroup) -> TransposedPattern:
 def transpose_output(transposed_pattern: TransposedPattern):
     """Create HTML with transposed pattern."""
     # todo test
+    scale_name = transposed_pattern.scale_name
+    pattern_name = transposed_pattern.pattern_name
+    transposed_pattern_html = ''
 
+    for key in transposed_pattern.scales:
+
+        key_html = f'''
+            <section>
+                <h3>{key.name}</h3>
+                <p class="pattern">{' '.join(key.scale)}</p>
+            </section>
+        '''
+        transposed_pattern_html += key_html
+
+    title = f'{scale_name}, {pattern_name}'
+    plain_css = """
+h1 {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    
+    font-size: 16px;
+    font-weight: bold;
+    color: lightgrey;
+}
+
+footer {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+
+    color: grey;
+}
+
+.header {
+    margin: auto;
+    width: 500px;
+    text-align: center;
+}
+.content {
+    margin: auto;
+    width: 500px;
+    text-align: center;
+}
+
+.pattern {
+    font-size: 25px;
+}
+"""
+    html_code = """
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{title}</title>
+        <style type="text/css">
+            {styles}
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <h1>into all scales</h1>
+            <h2>{title}</h2>
+        </header>
+        <div class="content">
+            {data}
+        </div>
+        <footer>©"Into all scales" created by Irina Eiduk, 2023</footer>
+    </body>
+</html>
+""".format(title=title, styles=plain_css, data=transposed_pattern_html)
+
+    html_file = open(f"{scale_name.replace(' ', '_').lower()}.html", 'w+')
+    html_file.write(html_code)
+    html_file.close()
 
 
 def main(pattern_name: str, scale_name: str) -> None:

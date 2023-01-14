@@ -1,3 +1,21 @@
+h1 {
+     position: absolute;
+     top: 10px;
+     right: 15px;
+
+     font-size: 16px;
+     font-weight: bold;
+     color: lightgrey;
+}
+
+footer {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+
+    color: grey;
+}
+
 .header {
     margin: auto;
     width: 500px;
@@ -7,4 +25,8 @@
     margin: auto;
     width: 500px;
     text-align: center;
+}
+
+.pattern {
+    font-size: 25px;
 }
