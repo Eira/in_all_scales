@@ -1,3 +1,0 @@
-Test scales
-Am: A B C
-Bbm: Bb C Db

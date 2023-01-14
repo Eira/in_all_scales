@@ -1,7 +1,7 @@
 import logging
 from typing import List
 
-from models import ScaleGroup, Key, TransPattern, Pattern, ScaleFormula
+from models import ScaleGroup, Key, Pattern, ScaleFormula, TransposedPattern
 
 
 def get_pattern(pattern_name: str) -> Pattern:
@@ -106,33 +106,37 @@ def get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
     return scale_group
 
 
-def transpose(pattern: Pattern, scale_group: ScaleGroup) -> List[TransPattern]:
+def transpose(pattern: Pattern, scale_group: ScaleGroup) -> TransposedPattern:
     """
      Transpose pattern to one scale.
      Return the dict with patterns for all keys of the scale.
      """
     # todo test
-    transposed_pattern = []
+    patterned_key_list = []
     for scale in scale_group.scales:
 
         note_list = []
         for note in pattern.pattern:
             note_list.append(scale.scale[note-1])
 
-        patterned_key = TransPattern(
-            key=scale.name,
-            notes=note_list,
+        patterned_key = Key(
+            name=scale.name,
+            scale=note_list,
         )
-        transposed_pattern.append(patterned_key)
+        patterned_key_list.append(patterned_key)
 
+    transposed_pattern = TransposedPattern(
+        scale_name=scale_group.name,
+        pattern_name=pattern.name,
+        scales=patterned_key_list,
+    )
     return transposed_pattern
 
 
-def transpose_output(transposed_pattern):
-    """Return HTML with transposed pattern."""
+def transpose_output(transposed_pattern: TransposedPattern):
+    """Create HTML with transposed pattern."""
     # todo test
-    # подготовить к выводу блоки с патерном
-    ...
+
 
 
 def main(pattern_name: str, scale_name: str) -> None:
@@ -155,6 +159,7 @@ def main(pattern_name: str, scale_name: str) -> None:
 
     # Вывести в HTML паттерн в 12 тональностях
     transpose_output(transposed_pattern)
+
 
 if __name__ == '__main__':
     logging.basicConfig(

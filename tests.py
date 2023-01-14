@@ -1,5 +1,5 @@
 from index import transpose, get_scales_group, get_pattern, get_scale_formula
-from models import ScaleGroup, Key, TransPattern, Pattern, ScaleFormula
+from models import ScaleGroup, Key, Pattern, ScaleFormula, TransposedPattern
 
 
 def test_get_pattern():
@@ -106,13 +106,17 @@ def test_transpose_happy_path():
     )
 
     res = transpose(pattern, scale_group)
-    assert res == [
-        TransPattern(
-            key='C',
-            notes=['C', 'E', 'G'],
-        ),
-        TransPattern(
-            key='Db',
-            notes=['Db', 'F', 'Ab']
-        ),
-    ]
+    assert res == TransposedPattern(
+        scale_name='major test',
+        pattern_name='Pattern 1',
+        scales=[
+            Key(
+                name='C',
+                scale=['C', 'E', 'G'],
+            ),
+            Key(
+                name='Db',
+                scale=['Db', 'F', 'Ab']
+            ),
+        ]
+    )

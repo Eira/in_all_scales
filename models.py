@@ -32,7 +32,8 @@ class ScaleGroup:
 
 
 @dataclass
-class TransPattern:
+class TransposedPattern:
     """Pattern with transposed notes."""
-    key: str
-    notes: List
+    scale_name: str
+    pattern_name: str
+    scales: List[Key]
