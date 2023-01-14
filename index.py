@@ -19,14 +19,23 @@ test_major_scale = ScaleGroup(
 )
 
 
-base_scale = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
+_base_scale = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
 major_formula = [2, 2, 1, 2, 2, 2, 1]
 
 
 def get_pattern(pattern_name: str) -> Pattern:
     """Take from the user pattern name. Return object with name and pattern sequence."""
     # todo test
-    ...
+    source = {
+        'Pattern 1': [1, 2, 3],
+        'Pattern 2': [1, 2, 3, 2, 3, 4]
+    }.get(pattern_name)
+
+    pattern = Pattern(
+        name=pattern_name,
+        pattern=source,
+    )
+    return pattern
 
 
     # """Get pattern from the file. Returns it like the list."""
