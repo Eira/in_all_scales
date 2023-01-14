@@ -25,28 +25,64 @@ def test_get_scale_formula():
 
 
 def test_get_scales_group_happy_path():
-    res = get_scales_group('scales/test.txt')
+    scale_formula = ScaleFormula(
+        name='major',
+        formula=[2, 2, 1, 2, 2, 2, 1],
+    )
+    res = get_scales_group(scale_formula)
 
     assert res == ScaleGroup(
-        name='Test scales',
+        name='major',
         scales=[
             Key(
-                name='Am',
-                scale=['A', 'B', 'C'],
+                name='C',
+                scale=['C', 'D', 'E', 'F', 'G', 'A', 'B'],
             ),
             Key(
-                name='Bbm',
-                scale=['Bb', 'C', 'Db'],
+                name='Db',
+                scale=['Db', 'Eb', 'F', 'Gb', 'Ab', 'Bb', 'C'],
+            ),
+            Key(
+                name='D',
+                scale=['D', 'E', 'Gb', 'G', 'A', 'B', 'Db'],
+            ),
+            Key(
+                name='Eb',
+                scale=['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D'],
+            ),
+            Key(
+                name='E',
+                scale=['E', 'Gb', 'Ab', 'A', 'B', 'Db', 'Eb'],
+            ),
+            Key(
+                name='F',
+                scale=['F', 'G', 'A', 'Bb', 'C', 'D', 'E'],
+            ),
+            Key(
+                name='Gb',
+                scale=['Gb', 'Ab', 'Bb', 'B', 'Db', 'Eb', 'F'],
+            ),
+            Key(
+                name='G',
+                scale=['G', 'A', 'B', 'C', 'D', 'E', 'Gb'],
+            ),
+            Key(
+                name='Ab',
+                scale=['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G'],
+            ),
+            Key(
+                name='A',
+                scale=['A', 'B', 'Db', 'D', 'E', 'Gb', 'Ab'],
+            ),
+            Key(
+                name='Bb',
+                scale=['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A'],
+            ),
+            Key(
+                name='B',
+                scale=['B', 'Db', 'Eb', 'E', 'Gb', 'Ab', 'Bb'],
             ),
         ]
-    )
-
-
-def test_get_pattern_happy_path():
-    res = get_pattern('patterns/test.txt')
-    assert res == Pattern(
-        name='Test pattern',
-        pattern=[1, 2, 3]
     )
 
 

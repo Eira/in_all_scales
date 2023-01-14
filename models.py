@@ -21,7 +21,7 @@ class ScaleFormula:
 class Key:
     """One key in the scale."""
     name: str
-    scale: List
+    scale: List[str]
 
 
 @dataclass

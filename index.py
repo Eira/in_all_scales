@@ -3,7 +3,6 @@ from typing import List
 
 from models import ScaleGroup, Key, TransPattern, Pattern, ScaleFormula
 
-test_pattern = [1, 3, 5]
 test_major_scale = ScaleGroup(
     name='test',
     scales=[
@@ -17,10 +16,6 @@ test_major_scale = ScaleGroup(
         ),
     ]
 )
-
-
-_base_scale = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
-major_formula = [2, 2, 1, 2, 2, 2, 1]
 
 
 def get_pattern(pattern_name: str) -> Pattern:
@@ -53,22 +48,77 @@ def get_scale_formula(scale_name: str) -> ScaleFormula:
 
 def get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
     """Take scale formula. Returns group of scales."""
-    ...
+    base_scales = [
+        Key(
+            name='C',
+            scale=['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'],
+        ),
+        Key(
+            name='Db',
+            scale=['Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C'],
+        ),
+        Key(
+            name='D',
+            scale=['D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db'],
+        ),
+        Key(
+            name='Eb',
+            scale=['Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D'],
+        ),
+        Key(
+            name='E',
+            scale=['E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb'],
+        ),
+        Key(
+            name='F',
+            scale=['F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E'],
+        ),
+        Key(
+            name='Gb',
+            scale=['Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F'],
+        ),
+        Key(
+            name='G',
+            scale=['G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb'],
+        ),
+        Key(
+            name='Ab',
+            scale=['Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G'],
+        ),
+        Key(
+            name='A',
+            scale=['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab'],
+        ),
+        Key(
+            name='Bb',
+            scale=['Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A'],
+        ),
+        Key(
+            name='B',
+            scale=['B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb'],
+        ),
+    ]
 
+    scales_list = []
+    for key in base_scales:
+        step = 0
+        formuled_scale = []
+        for num in scale_formula.formula:
+            formuled_scale.append(key.scale[step])
+            step += num
 
-# def create_scale_group(formula: List) -> ScaleGroup:
-#     """Calculate group of scales from 12 basic notes, using specific formula."""
-#     # todo test
-#     cnt = 0
-#     for item in base_scale:
-#         if item == note:
-#             break
-#         cnt += 1
-#     note_base_scale = base_scale[cnt:]
-#
-#     scale_group = 0
-#
-#     return note_base_scale
+        formuled_key = Key(
+            name=key.name,
+            scale=formuled_scale,
+        )
+        scales_list.append(formuled_key)
+
+    scale_group = ScaleGroup(
+        name=scale_formula.name,
+        scales=scales_list,
+    )
+
+    return scale_group
 
 
 def transpose(pattern: Pattern, scale_group: ScaleGroup) -> List[TransPattern]:
