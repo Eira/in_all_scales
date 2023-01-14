@@ -3,20 +3,6 @@ from typing import List
 
 from models import ScaleGroup, Key, TransPattern, Pattern, ScaleFormula
 
-test_major_scale = ScaleGroup(
-    name='test',
-    scales=[
-        Key(
-            name='A',
-            scale=['A', 'B', 'C#', 'D', 'E', 'F#', 'G#', 'A'],
-        ),
-        Key(
-            name='Bb',
-            scale=['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A', 'Bb'],
-        ),
-    ]
-)
-
 
 def get_pattern(pattern_name: str) -> Pattern:
     """Take from the user pattern name. Return object with name and pattern sequence."""
@@ -117,7 +103,6 @@ def get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
         name=scale_formula.name,
         scales=scales_list,
     )
-
     return scale_group
 
 
@@ -127,20 +112,18 @@ def transpose(pattern: Pattern, scale_group: ScaleGroup) -> List[TransPattern]:
      Return the dict with patterns for all keys of the scale.
      """
     # todo test
-
     transposed_pattern = []
+    for scale in scale_group.scales:
 
-    for elem in scale_group.scales:  # todo как тут быть с именованием
-        temp_pattern = []
+        note_list = []
         for note in pattern.pattern:
-            temp_pattern.append(elem.scale[note - 1])
+            note_list.append(scale.scale[note-1])
 
-        key_pattern = TransPattern(
-            key=elem.name,
-            pattern=temp_pattern,  # todo как тут аппендить?
+        patterned_key = TransPattern(
+            key=scale.name,
+            notes=note_list,
         )
-
-        transposed_pattern.append(key_pattern)
+        transposed_pattern.append(patterned_key)
 
     return transposed_pattern
 
@@ -160,7 +143,7 @@ def main(pattern_name: str, scale_name: str) -> None:
     Return HTML with the result.
     """
     # todo test
-    # ? Получить от пользователя паттерн и тональность
+    # Получить от пользователя паттерн и тональность
     pattern = get_pattern(pattern_name)
     scale_formula = get_scale_formula(scale_name)
 

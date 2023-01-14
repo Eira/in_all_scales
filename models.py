@@ -35,4 +35,4 @@ class ScaleGroup:
 class TransPattern:
     """Pattern with transposed notes."""
     key: str
-    pattern: List
+    notes: List

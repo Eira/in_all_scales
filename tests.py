@@ -87,34 +87,32 @@ def test_get_scales_group_happy_path():
 
 
 def test_transpose_happy_path():
-    test_pattern = Pattern(
-        name='Test pattern',
-        pattern=[1, 3, 5]
+    pattern = Pattern(
+        name='Pattern 1',
+        pattern=[1, 3, 5],
     )
-    test_major_scale = ScaleGroup(
-        name='Test scales',
+    scale_group = ScaleGroup(
+        name='major test',
         scales=[
             Key(
-                name='A',
-                scale=['A', 'B', 'C#', 'D', 'E', 'F#', 'G#', 'A'],
+                name='C',
+                scale=['C', 'D', 'E', 'F', 'G', 'A', 'B'],
             ),
             Key(
-                name='Bb',
-                scale=['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A', 'Bb'],
+                name='Db',
+                scale=['Db', 'Eb', 'F', 'Gb', 'Ab', 'Bb', 'C'],
             ),
         ]
     )
 
-    res = transpose(test_pattern, test_major_scale)
+    res = transpose(pattern, scale_group)
     assert res == [
         TransPattern(
-            name='Test pattern',
-            key='A',
-            pattern=['A', 'C#', 'E'],
+            key='C',
+            notes=['C', 'E', 'G'],
         ),
         TransPattern(
-            name='Test pattern',
-            key='Bb',
-            pattern=['Bb', 'D', 'F']
+            key='Db',
+            notes=['Db', 'F', 'Ab']
         ),
     ]
