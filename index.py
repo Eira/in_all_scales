@@ -8,7 +8,7 @@ def get_pattern(pattern_name: str) -> Pattern:
     """Take from the user pattern name. Return object with name and pattern sequence."""
     source = {
         'Pattern 1': [1, 2, 3],
-        'Pattern 2': [1, 2, 3, 2, 3, 4],
+        'Pattern 2': [1, 2, 3, 2, 3, 4, 3, 4, 5],
     }.get(pattern_name)
 
     pattern = Pattern(
@@ -152,6 +152,9 @@ def transpose_output(transposed_pattern: TransposedPattern):
 
     title = f'{scale_name}, {pattern_name}'
     plain_css = """
+html {
+    position: relative;
+}
 h1 {
     position: absolute;
     top: 10px;
@@ -221,17 +224,13 @@ def main(pattern_name: str, scale_name: str) -> None:
     Return HTML with the result.
     """
     # todo test
-    # Получить от пользователя паттерн и тональность
     pattern = get_pattern(pattern_name)
     scale_formula = get_scale_formula(scale_name)
 
-    # Сгенерировать группу тональностей по заданной формуле
     scale_group = get_scales_group(scale_formula)
 
-    # Транспонировать паттерн в выбранную группу тональностей
     transposed_pattern = transpose(pattern, scale_group)
 
-    # Вывести в HTML паттерн в 12 тональностях
     transpose_output(transposed_pattern)
 
 

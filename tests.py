@@ -1,4 +1,4 @@
-from index import transpose, get_scales_group, get_pattern, get_scale_formula, transpose_output
+from index import transpose, get_scales_group, get_pattern, get_scale_formula, transpose_output, main
 from models import ScaleGroup, Key, Pattern, ScaleFormula, TransposedPattern
 
 
@@ -122,7 +122,7 @@ def test_transpose_happy_path():
     )
 
 
-def test_transpose_output():
+def test_transpose_output_smoke():
     source = TransposedPattern(
         scale_name='major test',
         pattern_name='Pattern 1',
@@ -139,3 +139,9 @@ def test_transpose_output():
     )
 
     transpose_output(source)
+
+
+def test_main_smoke():
+    pattern_name = 'Pattern 2'
+    scale_name = 'major'
+    main(pattern_name, scale_name)
