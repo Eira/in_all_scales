@@ -142,6 +142,6 @@ def test_transpose_output_smoke():
 
 
 def test_main_smoke():
-    pattern_name = 'pentatonic scale up'
-    scale_name = 'major'
+    pattern_name = 'blues scale up'
+    scale_name = 'blues minor'
     main(pattern_name, scale_name)

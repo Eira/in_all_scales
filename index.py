@@ -11,7 +11,7 @@ def get_pattern(pattern_name: str) -> Pattern:
         'scale up': [1, 2, 3, 4, 5, 6, 7, 8],
         'scale down': [8, 7, 6, 5, 4, 3, 2, 1],
         'pentatonic scale up': [1, 3, 4, 5, 7, 8],
-        'blues scale up': [1, 3, 4, 5, 7, 8],
+        'blues scale up': [1, 2, 3, 4, 5, 6, 7],
         'triplets up': [1, 2, 3, 2, 3, 4, 3, 4, 5, 4, 5, 6, 5, 6, 7, 6, 7, 1],
         'triplets down': [1, 7, 6, 7, 6, 5, 6, 5, 4, 5, 4, 3, 4, 3, 2, 3, 2, 1],
     }.get(pattern_name)
@@ -28,7 +28,7 @@ def get_scale_formula(scale_name: str) -> ScaleFormula:
     source = {
         'major': [2, 2, 1, 2, 2, 2, 1],
         'major pentatonic': [2, 2, 1, 2, 2, 2, 1],
-        'major blues': [2, 2, 1, 1, 3, 2, 3],
+        'major blues': [2, 1, 1, 3, 2, 3],
         'jazz melodic minor': [2, 1, 2, 2, 2, 2, 1],
         'harmonic minor': [2, 1, 2, 2, 1, 3, 1],
         'minor': [2, 1, 2, 2, 1, 2, 2],
@@ -222,8 +222,8 @@ footer {
 </html>
 """.format(title=title, styles=plain_css, data=transposed_pattern_html)
 
-    #file_name = f"{scale_name.replace(' ', '_').lower()}_"
-    html_file = open(f"{scale_name.replace(' ', '_').lower()}.html", 'w+')
+    file_name = f"results/{scale_name.replace(' ', '_').lower()}_{pattern_name.replace(' ', '_').lower()}"
+    html_file = open(f"{file_name}.html", 'w+')
     html_file.write(html_code)
     html_file.close()
 
