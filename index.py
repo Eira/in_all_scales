@@ -8,7 +8,10 @@ def get_pattern(pattern_name: str) -> Pattern:
     """Take from the user pattern name. Return object with name and pattern sequence."""
     source = {
         'Pattern 1': [1, 2, 3],
-        'Pattern 2': [1, 2, 3, 2, 3, 4, 3, 4, 5],
+        'scale up': [1, 2, 3, 4, 5, 6, 7, 8],
+        'scale down': [8, 7, 6, 5, 4, 3, 2, 1],
+        'triplets up': [1, 2, 3, 2, 3, 4, 3, 4, 5, 4, 5, 6, 5, 6, 7, 6, 7, 1],
+        'triplets down': [1, 7, 6, 7, 6, 5, 6, 5, 4, 5, 4, 3, 4, 3, 2, 3, 2, 1],
     }.get(pattern_name)
 
     pattern = Pattern(
@@ -21,8 +24,8 @@ def get_pattern(pattern_name: str) -> Pattern:
 def get_scale_formula(scale_name: str) -> ScaleFormula:
     """Take from the user scale name. Return object with name and scale formula sequence."""
     source = {
-        'major': [2, 2, 1, 2, 2, 2, 1],
-        'minor': [2, 1, 2, 2, 1, 2, 2],
+        'major': [2, 2, 1, 2, 2, 2, 1, 1],
+        'minor': [2, 1, 2, 2, 1, 2, 2, 1],
     }.get(scale_name)
 
     scale_formula = ScaleFormula(
@@ -37,51 +40,51 @@ def get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
     base_scales = [
         Key(
             name='C',
-            scale=['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'],
+            scale=['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C'],
         ),
         Key(
             name='Db',
-            scale=['Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C'],
+            scale=['Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db'],
         ),
         Key(
             name='D',
-            scale=['D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db'],
+            scale=['D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D'],
         ),
         Key(
             name='Eb',
-            scale=['Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D'],
+            scale=['Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb'],
         ),
         Key(
             name='E',
-            scale=['E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb'],
+            scale=['E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E'],
         ),
         Key(
             name='F',
-            scale=['F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E'],
+            scale=['F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F'],
         ),
         Key(
             name='Gb',
-            scale=['Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F'],
+            scale=['Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb'],
         ),
         Key(
             name='G',
-            scale=['G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb'],
+            scale=['G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G'],
         ),
         Key(
             name='Ab',
-            scale=['Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G'],
+            scale=['Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab'],
         ),
         Key(
             name='A',
-            scale=['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab'],
+            scale=['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A'],
         ),
         Key(
             name='Bb',
-            scale=['Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A'],
+            scale=['Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb'],
         ),
         Key(
             name='B',
-            scale=['B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb'],
+            scale=['B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'],
         ),
     ]
 
@@ -211,6 +214,7 @@ footer {
 </html>
 """.format(title=title, styles=plain_css, data=transposed_pattern_html)
 
+    #file_name = f"{scale_name.replace(' ', '_').lower()}_"
     html_file = open(f"{scale_name.replace(' ', '_').lower()}.html", 'w+')
     html_file.write(html_code)
     html_file.close()
