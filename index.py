@@ -10,6 +10,8 @@ def get_pattern(pattern_name: str) -> Pattern:
         'Pattern 1': [1, 2, 3],
         'scale up': [1, 2, 3, 4, 5, 6, 7, 8],
         'scale down': [8, 7, 6, 5, 4, 3, 2, 1],
+        'pentatonic scale up': [1, 3, 4, 5, 7, 8],
+        'blues scale up': [1, 3, 4, 5, 7, 8],
         'triplets up': [1, 2, 3, 2, 3, 4, 3, 4, 5, 4, 5, 6, 5, 6, 7, 6, 7, 1],
         'triplets down': [1, 7, 6, 7, 6, 5, 6, 5, 4, 5, 4, 3, 4, 3, 2, 3, 2, 1],
     }.get(pattern_name)
@@ -24,8 +26,14 @@ def get_pattern(pattern_name: str) -> Pattern:
 def get_scale_formula(scale_name: str) -> ScaleFormula:
     """Take from the user scale name. Return object with name and scale formula sequence."""
     source = {
-        'major': [2, 2, 1, 2, 2, 2, 1, 1],
-        'minor': [2, 1, 2, 2, 1, 2, 2, 1],
+        'major': [2, 2, 1, 2, 2, 2, 1],
+        'major pentatonic': [2, 2, 1, 2, 2, 2, 1],
+        'major blues': [2, 2, 1, 1, 3, 2, 3],
+        'jazz melodic minor': [2, 1, 2, 2, 2, 2, 1],
+        'harmonic minor': [2, 1, 2, 2, 1, 3, 1],
+        'minor': [2, 1, 2, 2, 1, 2, 2],
+        'pentatonic minor': [2, 1, 2, 2, 1, 2, 2],
+        'blues minor': [3, 2, 1, 1, 3, 2],
     }.get(scale_name)
 
     scale_formula = ScaleFormula(
@@ -91,10 +99,10 @@ def get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
     scales_list = []
     for key in base_scales:
         step = 0
-        formuled_scale = []
+        formuled_scale = [key.scale[0]]
         for num in scale_formula.formula:
-            formuled_scale.append(key.scale[step])
             step += num
+            formuled_scale.append(key.scale[step])
 
         formuled_key = Key(
             name=key.name,
