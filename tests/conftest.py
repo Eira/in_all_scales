@@ -26,7 +26,7 @@ def fixture_trans_row_notes(fixture_trans_quant_notes) -> TransRowNotes:
 @pytest.fixture()
 def fixture_pattern_in_key(fixture_trans_row_notes) -> PatternInKey:
     pattern_in_key = PatternInKey(
-        key_name= 'C',
+        key_name='C',
         pattern=[fixture_trans_row_notes, fixture_trans_row_notes]
     )
     yield pattern_in_key

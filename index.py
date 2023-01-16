@@ -155,10 +155,20 @@ def transpose_output(transposed_pattern_list: List[PatternInScale]) -> int:
         transposed_pattern_html = ''
 
         for pattern_in_key in pattern_in_scale.scales:
+            pattern_row_html = ''
+            for pattern_list in pattern_in_key.pattern:
+                pattern_row_list_html = ''
+                for quotes_list in pattern_list.quants:
+                    pattern_row_html += f'''
+                    <span class="scale_quant">{' '.join(quotes_list.notes)}</span>
+                '''
+                pattern_row_list_html += f'''
+                    <p class="pattern">{pattern_row_html}</p>
+                '''
             key_html = f'''
                     <section>
                         <h3>{pattern_in_key.key_name}</h3>
-                        <p class="pattern">{' '.join(pattern_in_key.pattern)}</p>
+                        {pattern_row_list_html}
                     </section>
                 '''
             transposed_pattern_html += key_html
@@ -199,6 +209,10 @@ def transpose_output(transposed_pattern_list: List[PatternInScale]) -> int:
 
         .pattern {
             font-size: 25px;
+        }
+        
+        .scale_quant {
+            margin: 5px;
         }
         """
         html_code = """
