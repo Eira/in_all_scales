@@ -1,5 +1,5 @@
 from index import transpose, get_scales_group, get_pattern, get_scale_formula, transpose_output, main
-from models import ScaleGroup, Key, Pattern, ScaleFormula, TransposedPattern
+from models import ScaleGroup, Key, Pattern, ScaleFormula, PatternInScale, TransRowNotes, PatternInKey, QuantNotes, TransQuantNotes
 
 
 def test_get_pattern():
@@ -106,8 +106,8 @@ def test_transpose_happy_path():
     )
 
     res = transpose(pattern, scale_group)
-    assert res == TransposedPattern(
-        scale_name='major test',
+    assert res == PatternInScale(
+        scale_type_name='major test',
         pattern_name='Pattern 1',
         scales=[
             Key(
@@ -122,26 +122,15 @@ def test_transpose_happy_path():
     )
 
 
-def test_transpose_output_smoke():
-    source = TransposedPattern(
-        scale_name='major test',
-        pattern_name='Pattern 1',
-        scales=[
-            Key(
-                name='C',
-                scale=['C', 'E', 'G'],
-            ),
-            Key(
-                name='Db',
-                scale=['Db', 'F', 'Ab']
-            ),
-        ]
-    )
+def test_transpose_output_smoke(fixture_pattern_in_scale):
+    source = [fixture_pattern_in_scale, fixture_pattern_in_scale]
 
-    transpose_output(source)
+    res = transpose_output(source)
+
+    assert res == 2
 
 
 def test_main_smoke():
-    pattern_name = 'blues scale up'
-    scale_name = 'blues minor'
+    pattern_name = 'scale'
+    scale_name = 'minor'
     main(pattern_name, scale_name)
