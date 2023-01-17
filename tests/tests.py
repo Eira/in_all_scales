@@ -1,5 +1,6 @@
-from index import transpose, get_scales_group, get_pattern, get_scale_formula, transpose_output, main
-from models import ScaleGroup, Key, Pattern, ScaleFormula, PatternInScale, TransRowNotes, PatternInKey, QuantNotes, TransQuantNotes
+from index import transpose, get_scales_group, get_pattern, get_scale_formula, transpose_output, main, create_transposed_pattern_html, create_key_html, create_row_html, \
+    create_quant_html
+from models import ScaleGroup, Key, Pattern, ScaleFormula, PatternInScale
 
 
 def test_get_pattern():
@@ -86,6 +87,7 @@ def test_get_scales_group_happy_path():
     )
 
 
+# todo переписать
 def test_transpose_happy_path():
     pattern = Pattern(
         name='Pattern 1',
@@ -120,6 +122,30 @@ def test_transpose_happy_path():
             ),
         ]
     )
+
+
+def test_create_quant_html_smoke(fixture_trans_quant_notes):
+    res = create_quant_html(fixture_trans_quant_notes)
+
+    assert res
+
+
+def test_create_row_html_smoke(fixture_trans_row_notes):
+    res = create_row_html(fixture_trans_row_notes)
+
+    assert res
+
+
+def test_create_key_html_smoke(fixture_pattern_in_key):
+    res = create_key_html(fixture_pattern_in_key)
+
+    assert res
+
+
+def test_create_transposed_pattern_html_smoke(fixture_pattern_in_scale):
+    res = create_transposed_pattern_html(fixture_pattern_in_scale)
+
+    assert res
 
 
 def test_transpose_output_smoke(fixture_pattern_in_scale):

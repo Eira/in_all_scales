@@ -1,7 +1,7 @@
 import logging
 from typing import List
 
-from models import ScaleGroup, Key, Pattern, ScaleFormula, PatternInScale
+from models import ScaleGroup, Key, Pattern, ScaleFormula, PatternInScale, TransRowNotes, PatternInKey, QuantNotes
 
 
 def get_pattern(pattern_name: str) -> Pattern:
@@ -144,6 +144,54 @@ def transpose(pattern: Pattern, scale_group: ScaleGroup) -> PatternInScale:
     return transposed_pattern
 
 
+def create_quant_html(quotes_list: QuantNotes) -> str:
+    """Create html with one quant of the row in transposed pattern."""
+    pattern_row_html = f'''
+        <span class="scale_quant">{' '.join(quotes_list.notes)}</span>
+    '''
+
+    return pattern_row_html
+
+
+def create_row_html(pattern_row: TransRowNotes) -> str:
+    """Create html with one row of the transposed pattern."""
+    quants_list_html = ''
+    for quotes_list in pattern_row.quants:
+        quants_list_html += create_quant_html(quotes_list)
+
+    pattern_row_html = f'''<p class="pattern">
+        {quants_list_html}
+    </p>
+    '''
+
+    return pattern_row_html
+
+
+def create_key_html(pattern_in_key: PatternInKey) -> str:
+    """Create html with transposed pattern in one key."""
+    pattern_row_list_html = ''
+    for pattern_row in pattern_in_key.pattern:
+        pattern_row_list_html += create_row_html(pattern_row)
+
+    key_html = f'''<section>
+        <h3>{pattern_in_key.key_name}</h3>
+        {pattern_row_list_html}
+    </section>
+    '''
+
+    return key_html
+
+
+def create_transposed_pattern_html(pattern_in_scale: PatternInScale) -> str:
+    """Create html with list of transposed pattern in every key."""
+    transposed_pattern_html = ''
+    for pattern_in_key in pattern_in_scale.scales:
+        key_html = create_key_html(pattern_in_key)
+        transposed_pattern_html += key_html
+
+    return transposed_pattern_html
+
+
 def transpose_output(transposed_pattern_list: List[PatternInScale]) -> int:
     """Create group of HTML files with transposed pattern."""
     # todo test
@@ -152,31 +200,13 @@ def transpose_output(transposed_pattern_list: List[PatternInScale]) -> int:
         scale_type_name = pattern_in_scale.scale_type_name
         pattern_name = pattern_in_scale.pattern_name
 
-        transposed_pattern_html = ''
-
-        for pattern_in_key in pattern_in_scale.scales:
-            pattern_row_html = ''
-            for pattern_list in pattern_in_key.pattern:
-                pattern_row_list_html = ''
-                for quotes_list in pattern_list.quants:
-                    pattern_row_html += f'''
-                    <span class="scale_quant">{' '.join(quotes_list.notes)}</span>
-                '''
-                pattern_row_list_html += f'''
-                    <p class="pattern">{pattern_row_html}</p>
-                '''
-            key_html = f'''
-                    <section>
-                        <h3>{pattern_in_key.key_name}</h3>
-                        {pattern_row_list_html}
-                    </section>
-                '''
-            transposed_pattern_html += key_html
+        transposed_pattern_html = create_transposed_pattern_html(pattern_in_scale)
 
         title = f'{scale_type_name}, {pattern_name}'
         plain_css = """
         html {
             position: relative;
+            min_height: 100%;
         }
         h1 {
             position: absolute;
@@ -216,27 +246,27 @@ def transpose_output(transposed_pattern_list: List[PatternInScale]) -> int:
         }
         """
         html_code = """
-        <!DOCTYPE html>
-        <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <title>{title}</title>
-                <style type="text/css">
-                    {styles}
-                </style>
-            </head>
-            <body>
-                <header class="header">
-                    <h1>into all scales</h1>
-                    <h2>{title}</h2>
-                </header>
-                <div class="content">
-                    {data}
-                </div>
-                <footer>©"Into all scales" created by Irina Eiduk, 2023</footer>
-            </body>
-        </html>
-        """.format(title=title, styles=plain_css, data=transposed_pattern_html)
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{title}</title>
+        <style type="text/css">
+            {styles}
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <h1>into all scales</h1>
+            <h2>{title}</h2>
+        </header>
+        <div class="content">
+            {data}
+        </div>
+        <footer>©"Into all scales" created by Irina Eiduk, 2023</footer>
+    </body>
+</html>
+""".format(title=title, styles=plain_css, data=transposed_pattern_html)
 
         file_name = f"results/{scale_type_name.replace(' ', '_').lower()}_{pattern_name.replace(' ', '_').lower()}"
         html_file = open(f"{file_name}.html", 'w+')
