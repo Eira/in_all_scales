@@ -91,6 +91,7 @@ def test_get_scales_group_happy_path():
 def test_transpose_happy_path():
     pattern = Pattern(
         name='Pattern 1',
+        scale_types=['minor', 'major'],
         pattern=[1, 2, 3, 4, 5, 6, 7, 8],
     )
     scale_group = ScaleGroup(
@@ -107,7 +108,7 @@ def test_transpose_happy_path():
         ]
     )
 
-    res = transpose(pattern, scale_group)
+    res = transpose(pattern)
     assert res == PatternInScale(
         scale_type_name='major test',
         pattern_name='Pattern 1',

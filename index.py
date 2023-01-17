@@ -1,5 +1,5 @@
 import logging
-from typing import List
+from typing import List, Optional
 
 from models import ScaleGroup, Key, Pattern, ScaleFormula, PatternInScale, TransRowNotes, PatternInKey, QuantNotes
 
@@ -117,31 +117,53 @@ def get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
     return scale_group
 
 
-def transpose(pattern: Pattern, scale_group: ScaleGroup) -> PatternInScale:
+def get_scale_group_from_name(scale_name: str) -> ScaleGroup:
+    """Create scale object from the name."""
+    #todo test
+    formula = get_scale_formula(scale_name)
+    scale_group = get_scales_group(formula)
+
+    return scale_group
+
+
+def transpose(pattern: Pattern, scale_group_list: Optional[List[ScaleGroup]] = None) -> List[PatternInScale]:
     """
      Transpose pattern to one scale.
      Return the dict with patterns for all keys of the scale.
      """
     # todo test
-    patterned_key_list = []
-    for scale in scale_group.scales:
+    transposed_pattern_list = []
 
-        note_list = []
-        for note in pattern.pattern:
-            note_list.append(scale.scale[note-1])
+    if scale_group_list is None:
+        for scale_type in pattern.scale_types:
+            scale_group = get_scale_group_from_name(scale_type)
 
-        patterned_key = Key(
-            name=scale.name,
-            scale=note_list,
-        )
-        patterned_key_list.append(patterned_key)
+            patterned_key_list = []
+            for scale in scale_group.scales:
 
-    transposed_pattern = PatternInScale(
-        scale_type_name=scale_group.name,
-        pattern_name=pattern.name,
-        scales=patterned_key_list,
-    )
-    return transposed_pattern
+                note_list = []
+                for note in pattern.pattern:
+                    note_list.append(scale.scale[note - 1])
+
+                patterned_key = Key(
+                    name=scale.name,
+                    scale=note_list,
+                )
+                patterned_key_list.append(patterned_key)
+
+            transposed_pattern = PatternInScale(
+                scale_type_name=scale_group.name,
+                pattern_name=pattern.name,
+                scales=patterned_key_list,
+            )
+
+            transposed_pattern_list.append(transposed_pattern)
+
+    return transposed_pattern_list
+
+
+
+
 
 
 def create_quant_html(quotes_list: QuantNotes) -> str:
