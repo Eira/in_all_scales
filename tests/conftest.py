@@ -2,7 +2,25 @@ from typing import List
 
 import pytest
 
-from models import TransRowNotes, PatternInKey, PatternInScale
+from models import TransRowNotes, PatternInKey, PatternInScale, Pattern, RowNotes
+
+
+@pytest.fixture()
+def fixture_test_pattern() -> Pattern:
+    pattern = Pattern(
+        name='test scale',
+        scale_types=['minor', 'major'],
+        pattern=[
+            RowNotes(
+                quants=['123', '24', '5'],
+            ),
+            RowNotes(
+                quants=['5', '42', '321'],
+            ),
+        ]
+    )
+
+    yield pattern
 
 
 @pytest.fixture()

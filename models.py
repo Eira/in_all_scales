@@ -6,7 +6,7 @@ from typing import List
 @dataclass
 class RowNotes:
     """Groups of notes, gathered in a rows."""
-    quants: List[int]
+    quants: List[str]
 
 
 @dataclass
@@ -46,6 +46,8 @@ class ScaleGroup:
     scales: List[Key]
 
 
+
+# todo нужны ли эти классы
 @dataclass
 class TransRowNotes:
     """Groups of notes, gathered in a rows."""

@@ -1,5 +1,5 @@
 from index import transpose, get_scales_group, get_pattern, get_scale_formula, transpose_output, main, create_transposed_pattern_html, create_key_html, create_row_html, \
-    create_quant_html, create_pattern, get_scale_group_from_name
+    create_quant_html, create_pattern, get_scale_group_from_name, create_trans_quant
 from models import ScaleGroup, Key, Pattern, ScaleFormula, PatternInScale, RowNotes
 
 
@@ -15,10 +15,10 @@ def test_create_pattern_happy_path():
         scale_types=['scale 1', 'scale 2'],
         pattern=[
             RowNotes(
-                quants=[123, 24, 5],
+                quants=['123', '24', '5'],
             ),
             RowNotes(
-                quants=[5, 42, 321],
+                quants=['5', '42', '321'],
             ),
         ],
     )
@@ -34,10 +34,10 @@ def test_get_pattern():
         scale_types=['scale 1', 'scale 2'],
         pattern=[
             RowNotes(
-                quants=[123, 24, 5],
+                quants=['123', '24', '5'],
             ),
             RowNotes(
-                quants=[5, 42, 321],
+                quants=['5', '42', '321'],
             ),
         ]
     )
@@ -122,13 +122,9 @@ def test_get_scale_group_from_name_smoke():
 
     assert res is not None
 
+
 # todo переписать
-def test_transpose_happy_path():
-    pattern = Pattern(
-        name='Pattern 1',
-        scale_types=['minor', 'major'],
-        pattern=[1, 123, 78],
-    )
+def test_transpose_happy_path(fixture_test_pattern):
     scale_group = ScaleGroup(
         name='major test',
         scales=[
@@ -143,7 +139,7 @@ def test_transpose_happy_path():
         ]
     )
 
-    res = transpose(pattern)
+    res = transpose('fixture_test_pattern')
     assert res == PatternInScale(
         scale_type_name='major test',
         pattern_name='Pattern 1',
@@ -182,6 +178,12 @@ def test_create_transposed_pattern_html_smoke(fixture_pattern_in_scale):
     res = create_transposed_pattern_html(fixture_pattern_in_scale)
 
     assert res
+
+
+def test_create_trans_quant_smoke():
+    res = create_trans_quant()
+
+    assert res is not None
 
 
 def test_transpose_output_smoke(fixture_pattern_in_scale):
