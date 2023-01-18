@@ -38,7 +38,6 @@ _pattern_source = {
 # todo вероятно пригодится
 def create_pattern(pattern_name: str, scale_types: str, pattern: str) -> Pattern:
     """Create pattern object from users data."""
-    #todo test
     scale_types_list = scale_types.strip().split(',')
     source_row_list = pattern.strip().split(' ')
     row_list = []

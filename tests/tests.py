@@ -1,5 +1,5 @@
 from index import transpose, get_scales_group, get_pattern, get_scale_formula, transpose_output, main, create_transposed_pattern_html, create_key_html, create_row_html, \
-    create_quant_html, create_pattern
+    create_quant_html, create_pattern, get_scale_group_from_name
 from models import ScaleGroup, Key, Pattern, ScaleFormula, PatternInScale, RowNotes
 
 
@@ -50,14 +50,14 @@ def test_get_scale_formula():
 
     assert res == ScaleFormula(
         name='minor',
-        formula=[2, 1, 2, 2, 1, 2, 2, 1],
+        formula=[2, 1, 2, 2, 1, 2, 2],
     )
 
 
 def test_get_scales_group_happy_path():
     scale_formula = ScaleFormula(
         name='major',
-        formula=[2, 2, 1, 2, 2, 2, 1, 1],
+        formula=[2, 2, 1, 2, 2, 2, 1],
     )
     res = get_scales_group(scale_formula)
 
@@ -115,6 +115,12 @@ def test_get_scales_group_happy_path():
         ]
     )
 
+
+def test_get_scale_group_from_name_smoke():
+    scale_name = 'minor'
+    res = get_scale_group_from_name(scale_name)
+
+    assert res is not None
 
 # todo переписать
 def test_transpose_happy_path():
