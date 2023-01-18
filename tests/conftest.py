@@ -1,14 +1,14 @@
+from typing import List
+
 import pytest
 
-from models import TransQuantNotes, TransRowNotes, PatternInKey, PatternInScale
+from models import TransRowNotes, PatternInKey, PatternInScale
 
 
 @pytest.fixture()
-def fixture_trans_quant_notes() -> TransQuantNotes:
+def fixture_trans_quant_notes() -> List[str]:
     """Group of notes, that should be shown together, like one bar."""
-    trans_quant_notes = TransQuantNotes(
-        notes=['A', 'B', 'C']
-    )
+    trans_quant_notes = ['A', 'B', 'C']
 
     yield trans_quant_notes
 

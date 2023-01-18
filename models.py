@@ -4,15 +4,9 @@ from typing import List
 
 
 @dataclass
-class QuantNotes:
-    """Group of notes, that should be shown together, like one bar."""
-    notes: list[int]
-
-
-@dataclass
 class RowNotes:
     """Groups of notes, gathered in a rows."""
-    quants: list[QuantNotes]
+    quants: List[int]
 
 
 @dataclass
@@ -53,15 +47,9 @@ class ScaleGroup:
 
 
 @dataclass
-class TransQuantNotes:
-    """Group of notes, that should be shown together, like one bar."""
-    notes: List[str]
-
-
-@dataclass
 class TransRowNotes:
     """Groups of notes, gathered in a rows."""
-    quants: List[QuantNotes]
+    quants: List[str]
 
 
 @dataclass

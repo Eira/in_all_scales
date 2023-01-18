@@ -1,16 +1,45 @@
 from index import transpose, get_scales_group, get_pattern, get_scale_formula, transpose_output, main, create_transposed_pattern_html, create_key_html, create_row_html, \
-    create_quant_html
-from models import ScaleGroup, Key, Pattern, ScaleFormula, PatternInScale
+    create_quant_html, create_pattern
+from models import ScaleGroup, Key, Pattern, ScaleFormula, PatternInScale, RowNotes
+
+
+def test_create_pattern_happy_path():
+    pattern_name = 'test pattern'
+    scale_types = 'scale 1,scale 2'  # todo решить проблему с пробелами
+    pattern = '123,24,5 5,42,321'
+
+    res = create_pattern(pattern_name, scale_types, pattern)
+
+    assert res == Pattern(
+        name='test pattern',
+        scale_types=['scale 1', 'scale 2'],
+        pattern=[
+            RowNotes(
+                quants=[123, 24, 5],
+            ),
+            RowNotes(
+                quants=[5, 42, 321],
+            ),
+        ],
+    )
 
 
 def test_get_pattern():
-    pattern_name = 'Pattern 1'
+    pattern_name = 'test scale'
 
     res = get_pattern(pattern_name)
 
     assert res == Pattern(
-        name='Pattern 1',
-        pattern=[1, 2, 3],
+        name='test scale',
+        scale_types=['scale 1', 'scale 2'],
+        pattern=[
+            RowNotes(
+                quants=[123, 24, 5],
+            ),
+            RowNotes(
+                quants=[5, 42, 321],
+            ),
+        ]
     )
 
 
@@ -92,7 +121,7 @@ def test_transpose_happy_path():
     pattern = Pattern(
         name='Pattern 1',
         scale_types=['minor', 'major'],
-        pattern=[1, 2, 3, 4, 5, 6, 7, 8],
+        pattern=[1, 123, 78],
     )
     scale_group = ScaleGroup(
         name='major test',

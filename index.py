@@ -1,25 +1,64 @@
 import logging
 from typing import List, Optional
 
-from models import ScaleGroup, Key, Pattern, ScaleFormula, PatternInScale, TransRowNotes, PatternInKey, QuantNotes
+from models import ScaleGroup, Key, Pattern, ScaleFormula, PatternInScale, TransRowNotes, PatternInKey, RowNotes
+
+_pattern_source = {
+    'test scale': Pattern(
+        name='test scale',
+        scale_types=['scale 1', 'scale 2'],
+        pattern=[
+            RowNotes(
+                quants=[123, 24, 5],
+            ),
+            RowNotes(
+                quants=[5, 42, 321],
+            ),
+        ],
+    ),
+    'scale': Pattern(
+        name='scale',
+        scale_types=['major', 'minor'],
+        pattern=[
+            RowNotes(
+                quants=[1, 2, 3, 4, 5, 6, 7, 8],
+            ),
+            RowNotes(
+                quants=[8, 7, 6, 5, 4, 3, 2, 1],
+            ),
+        ],
+    ),
+    'pentatonic scale': [1, 3, 4, 5, 7, 8, 7, 5, 4, 3, 1],
+    'blues scale': [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
+    'triplets up': [1, 2, 3, 2, 3, 4, 3, 4, 5, 4, 5, 6, 5, 6, 7, 6, 7, 1],
+    'triplets down': [1, 7, 6, 7, 6, 5, 6, 5, 4, 5, 4, 3, 4, 3, 2, 3, 2, 1],
+}
+
+
+# todo вероятно пригодится
+def create_pattern(pattern_name: str, scale_types: str, pattern: str) -> Pattern:
+    """Create pattern object from users data."""
+    #todo test
+    scale_types_list = scale_types.strip().split(',')
+    source_row_list = pattern.strip().split(' ')
+    row_list = []
+    for source_row in source_row_list:
+        row = RowNotes(
+            quants=[int(note) for note in source_row.split(',')]
+        )
+        row_list.append(row)
+
+    return Pattern(
+        name=pattern_name,
+        scale_types=scale_types_list,
+        pattern=row_list,
+    )
 
 
 def get_pattern(pattern_name: str) -> Pattern:
     """Take from the user pattern name. Return object with name and pattern sequence."""
-    source = {
-        'Pattern 1': [1, 2, 3],
-        'scale': [1, 2, 3, 4, 5, 6, 7, 8, 7, 6, 5, 4, 3, 2, 1],
-        'scale down': [8, 7, 6, 5, 4, 3, 2, 1],
-        'pentatonic scale': [1, 3, 4, 5, 7, 8, 7, 5, 4, 3, 1],
-        'blues scale': [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
-        'triplets up': [1, 2, 3, 2, 3, 4, 3, 4, 5, 4, 5, 6, 5, 6, 7, 6, 7, 1],
-        'triplets down': [1, 7, 6, 7, 6, 5, 6, 5, 4, 5, 4, 3, 4, 3, 2, 3, 2, 1],
-    }.get(pattern_name)
+    pattern = _pattern_source.get(pattern_name)
 
-    pattern = Pattern(
-        name=pattern_name,
-        pattern=source,
-    )
     return pattern
 
 
@@ -128,8 +167,8 @@ def get_scale_group_from_name(scale_name: str) -> ScaleGroup:
 
 def transpose(pattern: Pattern, scale_group_list: Optional[List[ScaleGroup]] = None) -> List[PatternInScale]:
     """
-     Transpose pattern to one scale.
-     Return the dict with patterns for all keys of the scale.
+     Transpose pattern all possible scales or to selected one.
+     Return list of objects with patterns for all keys of the scale.
      """
     # todo test
     transposed_pattern_list = []
@@ -142,7 +181,9 @@ def transpose(pattern: Pattern, scale_group_list: Optional[List[ScaleGroup]] = N
             for scale in scale_group.scales:
 
                 note_list = []
-                for note in pattern.pattern:
+                for note_quant in pattern.pattern:
+
+
                     note_list.append(scale.scale[note - 1])
 
                 patterned_key = Key(
@@ -166,10 +207,10 @@ def transpose(pattern: Pattern, scale_group_list: Optional[List[ScaleGroup]] = N
 
 
 
-def create_quant_html(quotes_list: QuantNotes) -> str:
+def create_quant_html(quotes_list: List[int]) -> str:
     """Create html with one quant of the row in transposed pattern."""
     pattern_row_html = f'''
-        <span class="scale_quant">{' '.join(quotes_list.notes)}</span>
+        <span class="scale_quant">{' '.join(quotes_list)}</span>
     '''
 
     return pattern_row_html
