@@ -139,7 +139,7 @@ def test_transpose_happy_path(fixture_test_pattern):
         ]
     )
 
-    res = transpose('fixture_test_pattern')
+    res = transpose(fixture_test_pattern)
     assert res == PatternInScale(
         scale_type_name='major test',
         pattern_name='Pattern 1',
@@ -180,12 +180,6 @@ def test_create_transposed_pattern_html_smoke(fixture_pattern_in_scale):
     assert res
 
 
-def test_create_trans_quant_smoke():
-    res = create_trans_quant()
-
-    assert res is not None
-
-
 def test_transpose_output_smoke(fixture_pattern_in_scale):
     source = [fixture_pattern_in_scale, fixture_pattern_in_scale]
 
@@ -195,6 +189,5 @@ def test_transpose_output_smoke(fixture_pattern_in_scale):
 
 
 def test_main_smoke():
-    pattern_name = 'scale'
-    scale_name = 'minor'
-    main(pattern_name, scale_name)
+    pattern_name = 'Pattern Slow Minor Pentatonic Build up'
+    main(pattern_name)

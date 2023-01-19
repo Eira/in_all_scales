@@ -8,16 +8,16 @@ from models import TransRowNotes, PatternInKey, PatternInScale, Pattern, RowNote
 @pytest.fixture()
 def fixture_test_pattern() -> Pattern:
     pattern = Pattern(
-        name='test scale',
-        scale_types=['minor', 'major'],
+        name='Pattern Triplets',
+        scale_types=['major', 'minor'],
         pattern=[
             RowNotes(
-                quants=['123', '24', '5'],
+                quants=['123', '234', '345', '456', '567', '678'],
             ),
             RowNotes(
-                quants=['5', '42', '321'],
+                quants=['765', '654', '543', '432', '321'],
             ),
-        ]
+        ],
     )
 
     yield pattern

@@ -25,10 +25,68 @@ _pattern_source = {
             ),
         ],
     ),
+    'Pattern Triplets': Pattern(
+        name='Pattern Triplets',
+        scale_types=['major', 'minor'],
+        pattern=[
+            RowNotes(
+                quants=['123', '234', '345', '456', '567', '678'],
+            ),
+            RowNotes(
+                quants=['765', '654', '543', '432', '321'],
+            ),
+        ],
+    ),
+    'Pattern In thirds': Pattern(
+        name='Pattern In thirds',
+        scale_types=['minor'],
+        pattern=[
+            RowNotes(
+                quants=['13', '24', '35', '46', '57', '68', '72'],
+            ),
+            RowNotes(
+                quants=['86', '75', '64', '53', '42', '31', '27', '1'],
+            ),
+        ],
+    ),
+    'Pattern Skip a step': Pattern(
+        name='Pattern Skip a step',
+        scale_types=['minor'],
+        pattern=[
+            RowNotes(
+                quants=['1342', '3564', '5786', '7238'],
+            ),
+            RowNotes(
+                quants=['8657', '6435', '4213', '2761'],
+            ),
+        ],
+    ),
+    'Pattern Minor Pentatonic Skip a step': Pattern(
+        name='Pattern Minor Pentatonic Skip a step',
+        scale_types=['minor'],
+        pattern=[
+            RowNotes(
+                quants=['1453', '4785', '3574', '7348'],
+            ),
+            RowNotes(
+                quants=['8547', '5314', '3751'],
+            ),
+        ],
+    ),
+    'Pattern Slow Minor Pentatonic Build up': Pattern(
+        name='Pattern Slow Minor Pentatonic Build up',
+        scale_types=['minor'],
+        pattern=[
+            RowNotes(
+                quants=['1713', '4314', '3134', '5435'],
+            ),
+            RowNotes(
+                quants=['4345', '7547', '5457', '8758'],
+            ),
+        ],
+    ),
     'pentatonic scale': [1, 3, 4, 5, 7, 8, 7, 5, 4, 3, 1],
     'blues scale': [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
-    'triplets up': [1, 2, 3, 2, 3, 4, 3, 4, 5, 4, 5, 6, 5, 6, 7, 6, 7, 1],
-    'triplets down': [1, 7, 6, 7, 6, 5, 6, 5, 4, 5, 4, 3, 4, 3, 2, 3, 2, 1],
 }
 
 
@@ -163,13 +221,15 @@ def get_scale_group_from_name(scale_name: str) -> ScaleGroup:
 
 def create_trans_quant(quant: str, key_scale: List[Key]) -> str:
     """Transpose the quant in scale row to letters notes."""
-    trans_note_list = []
+    trans_note_list = ''
     for note in quant:
-        trans_note_list.append(key_scale[int(note) - 1])
+        trans_note_list += key_scale[int(note) - 1]
+
+    return trans_note_list
 
 
 def create_trans_row(row: List[str], key_scale: List[Key]) -> TransRowNotes:
-    """ Gather transposed quants to the row."""
+    """Gather transposed quants to the row."""
     trans_quant_list = []
 
     for quant in row:
@@ -185,6 +245,7 @@ def create_trans_row(row: List[str], key_scale: List[Key]) -> TransRowNotes:
 
 
 def create_trans_row_list(pattern_rows: List[RowNotes], key_scale: List[Key]) -> List[TransRowNotes]:
+    """Gather transposed rows to lists."""
     trans_row_list = []
 
     for row in pattern_rows:
@@ -209,6 +270,7 @@ def transpose(pattern: Pattern, scale_group_list: Optional[List[ScaleGroup]] = N
 
             patterned_key_list = []
             for key_scale in scale_group.scales:
+                print(key_scale.scale)
                 trans_row_list = create_trans_row_list(pattern.pattern, key_scale.scale)
 
                 patterned_key = PatternInKey(
@@ -232,7 +294,7 @@ def transpose(pattern: Pattern, scale_group_list: Optional[List[ScaleGroup]] = N
 
 
 
-def create_quant_html(quotes_list: List[int]) -> str:
+def create_quant_html(quotes_list: List[str]) -> str:
     """Create html with one quant of the row in transposed pattern."""
     pattern_row_html = f'''
         <span class="scale_quant">{' '.join(quotes_list)}</span>
@@ -316,12 +378,12 @@ def transpose_output(transposed_pattern_list: List[PatternInScale]) -> int:
 
         .header {
             margin: auto;
-            width: 500px;
+            width: 800px;
             text-align: center;
         }
         .content {
             margin: auto;
-            width: 500px;
+            width: 800px;
             text-align: center;
         }
 
@@ -366,7 +428,7 @@ def transpose_output(transposed_pattern_list: List[PatternInScale]) -> int:
     return cnt
 
 
-def main(pattern_name: str, scale_name: str) -> None:
+def main(pattern_name: str) -> None:
     """
     Do the main runner of "Into all scales" project.
 
@@ -377,14 +439,13 @@ def main(pattern_name: str, scale_name: str) -> None:
     #получить данные для паттерна
     # подготовить данные для паттерна и формулы?
     pattern = get_pattern(pattern_name)
-    scale_formula = get_scale_formula(scale_name)
+    #scale_formula = get_scale_formula(scale_name)
 
     # сгенерировать лад
-    scale_group = get_scales_group(scale_formula)
+    #scale_group = get_scales_group(scale_formula)
 
     # создать списки паттернов по ладам
-    transposed_pattern_list = transpose(pattern, scale_group)
-
+    transposed_pattern_list = transpose(pattern)
     # генерируем файлы
     transpose_output(transposed_pattern_list)
 

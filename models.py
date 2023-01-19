@@ -46,8 +46,6 @@ class ScaleGroup:
     scales: List[Key]
 
 
-
-# todo нужны ли эти классы
 @dataclass
 class TransRowNotes:
     """Groups of notes, gathered in a rows."""
