@@ -1,5 +1,4 @@
-from index import get_scales_group, get_pattern, get_scale_formula, transpose_output, main, create_transposed_pattern_html, create_key_html, create_row_html, \
-    create_quant_html, create_pattern, get_scale_group_from_name
+from index import get_scales_group, get_pattern, get_scale_formula, main, create_pattern, get_scale_group_from_name
 from models import ScaleGroup, Key, Pattern, ScaleFormula, RowNotes
 
 
