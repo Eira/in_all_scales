@@ -1,15 +1,25 @@
 html {
     position: relative;
+    min_height: 100%;
+}
+h1 {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+
+    font-size: 16px;
+    font-weight: bold;
+    color: lightgrey;
 }
 
-h1 {
-     position: absolute;
-     top: 10px;
-     right: 15px;
+.pattern_name {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
 
-     font-size: 16px;
-     font-weight: bold;
-     color: lightgrey;
+.scale_group_name {
+    margin-top: 5px;
+    margin-bottom: 38px;
 }
 
 footer {
@@ -22,12 +32,12 @@ footer {
 
 .header {
     margin: auto;
-    width: 500px;
+    width: 800px;
     text-align: center;
 }
 .content {
     margin: auto;
-    width: 500px;
+    width: 800px;
     text-align: center;
 }
 
