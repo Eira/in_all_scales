@@ -260,7 +260,6 @@ def transpose(pattern: Pattern, scale_group_list: Optional[List[ScaleGroup]] = N
      Transpose pattern all possible scales or to selected one.
      Return list of objects with patterns for all keys of the scale.
      """
-    # todo test
     transposed_pattern_list = []
 
     if scale_group_list is None:
@@ -284,7 +283,6 @@ def transpose(pattern: Pattern, scale_group_list: Optional[List[ScaleGroup]] = N
             )
 
             transposed_pattern_list.append(transposed_pattern)
-
     return transposed_pattern_list
 
 
