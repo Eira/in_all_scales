@@ -26,7 +26,7 @@ def fixture_test_pattern() -> Pattern:
 @pytest.fixture()
 def fixture_trans_quant_notes() -> List[str]:
     """Group of notes, that should be shown together, like one bar."""
-    trans_quant_notes = ['A', 'B', 'C']
+    trans_quant_notes = ['Ab', 'B', 'C']
 
     yield trans_quant_notes
 

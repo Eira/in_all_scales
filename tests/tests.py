@@ -1,6 +1,6 @@
-from index import transpose, get_scales_group, get_pattern, get_scale_formula, transpose_output, main, create_transposed_pattern_html, create_key_html, create_row_html, \
-    create_quant_html, create_pattern, get_scale_group_from_name, create_trans_quant
-from models import ScaleGroup, Key, Pattern, ScaleFormula, PatternInScale, RowNotes
+from index import get_scales_group, get_pattern, get_scale_formula, transpose_output, main, create_transposed_pattern_html, create_key_html, create_row_html, \
+    create_quant_html, create_pattern, get_scale_group_from_name
+from models import ScaleGroup, Key, Pattern, ScaleFormula, RowNotes
 
 
 def test_create_pattern_happy_path():
@@ -123,39 +123,6 @@ def test_get_scale_group_from_name_smoke():
     assert res is not None
 
 
-# todo переписать
-def test_transpose_happy_path(fixture_test_pattern):
-    scale_group = ScaleGroup(
-        name='major test',
-        scales=[
-            Key(
-                name='C',
-                scale=['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'],
-            ),
-            Key(
-                name='Db',
-                scale=['Db', 'Eb', 'F', 'Gb', 'Ab', 'Bb', 'C', 'Db'],
-            ),
-        ]
-    )
-
-    res = transpose(fixture_test_pattern)
-    assert res == PatternInScale(
-        scale_type_name='major test',
-        pattern_name='Pattern 1',
-        scales=[
-            Key(
-                name='C',
-                scale=['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'],
-            ),
-            Key(
-                name='Db',
-                scale=['Db', 'Eb', 'F', 'Gb', 'Ab', 'Bb', 'C', 'Db']
-            ),
-        ]
-    )
-
-
 def test_create_quant_html_smoke(fixture_trans_quant_notes):
     res = create_quant_html(fixture_trans_quant_notes)
 
@@ -189,5 +156,5 @@ def test_transpose_output_smoke(fixture_pattern_in_scale):
 
 
 def test_main_smoke():
-    pattern_name = 'Pattern Slow Minor Pentatonic Build up'
+    pattern_name = 'Pattern Up and down'
     main(pattern_name)

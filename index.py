@@ -223,9 +223,8 @@ def create_trans_quant(quant: str, key_scale: List[Key]) -> str:
     """Transpose the quant in scale row to letters notes."""
     trans_note_list = ''
     for note in quant:
-        trans_note_list += key_scale[int(note) - 1]
-
-    return trans_note_list
+        trans_note_list += f'{key_scale[int(note) - 1]} '
+    return trans_note_list.strip()
 
 
 def create_trans_row(row: List[str], key_scale: List[Key]) -> TransRowNotes:
@@ -270,7 +269,6 @@ def transpose(pattern: Pattern, scale_group_list: Optional[List[ScaleGroup]] = N
 
             patterned_key_list = []
             for key_scale in scale_group.scales:
-                print(key_scale.scale)
                 trans_row_list = create_trans_row_list(pattern.pattern, key_scale.scale)
 
                 patterned_key = PatternInKey(
@@ -294,12 +292,11 @@ def transpose(pattern: Pattern, scale_group_list: Optional[List[ScaleGroup]] = N
 
 
 
-def create_quant_html(quotes_list: List[str]) -> str:
+def create_quant_html(quotes_list: str) -> str:
     """Create html with one quant of the row in transposed pattern."""
     pattern_row_html = f'''
-        <span class="scale_quant">{' '.join(quotes_list)}</span>
+        <span class="scale_quant">{quotes_list}</span>
     '''
-
     return pattern_row_html
 
 
