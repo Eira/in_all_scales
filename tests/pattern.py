@@ -1,5 +1,5 @@
-from index import create_pattern, get_pattern
-from models import Pattern, RowNotes
+from app.pattern import create_pattern, get_pattern
+from app.models import Pattern, RowNotes
 
 
 def test_create_pattern_happy_path():

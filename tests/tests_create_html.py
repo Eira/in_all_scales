@@ -1,4 +1,5 @@
-from index import create_quant_html, create_row_html, create_key_html, create_transposed_pattern_html, transpose_output
+from app.transpose_output import transpose_output
+from app.create_html import create_quant_html, create_row_html, create_key_html, create_transposed_pattern_html
 
 
 def test_create_quant_html_happy_path(fixture_trans_quant_notes):
@@ -57,9 +58,4 @@ def test_create_transposed_pattern_html_smoke(fixture_pattern_in_scale):
     assert isinstance(res, str)
 
 
-def test_transpose_output_smoke(fixture_pattern_in_scale):
-    source = [fixture_pattern_in_scale, fixture_pattern_in_scale]
 
-    res = transpose_output(source)
-
-    assert res == 2

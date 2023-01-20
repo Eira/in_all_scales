@@ -1,4 +1,4 @@
-from index import main
+from app.main import main
 
 
 def test_main_smoke():
