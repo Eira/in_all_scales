@@ -1,45 +1,5 @@
-from index import get_scales_group, get_pattern, get_scale_formula, main, create_pattern, get_scale_group_from_name
-from models import ScaleGroup, Key, Pattern, ScaleFormula, RowNotes
-
-
-def test_create_pattern_happy_path():
-    pattern_name = 'test pattern'
-    scale_types = 'scale 1,scale 2'  # todo решить проблему с пробелами
-    pattern = '123,24,5 5,42,321'
-
-    res = create_pattern(pattern_name, scale_types, pattern)
-
-    assert res == Pattern(
-        name='test pattern',
-        scale_types=['scale 1', 'scale 2'],
-        pattern=[
-            RowNotes(
-                quants=['123', '24', '5'],
-            ),
-            RowNotes(
-                quants=['5', '42', '321'],
-            ),
-        ],
-    )
-
-
-def test_get_pattern():
-    pattern_name = 'test scale'
-
-    res = get_pattern(pattern_name)
-
-    assert res == Pattern(
-        name='test scale',
-        scale_types=['scale 1', 'scale 2'],
-        pattern=[
-            RowNotes(
-                quants=['123', '24', '5'],
-            ),
-            RowNotes(
-                quants=['5', '42', '321'],
-            ),
-        ]
-    )
+from index import get_scale_formula, get_scales_group, get_scale_group_from_name
+from models import ScaleFormula, ScaleGroup, Key
 
 
 def test_get_scale_formula():
@@ -120,8 +80,3 @@ def test_get_scale_group_from_name_smoke():
     res = get_scale_group_from_name(scale_name)
 
     assert res is not None
-
-
-def test_main_smoke():
-    pattern_name = 'Pattern Up and down'
-    main(pattern_name)

@@ -254,7 +254,6 @@ def create_trans_row_list(pattern_rows: List[RowNotes], key_scale: List[Key]) ->
     return trans_row_list
 
 
-# todo разобрать на функции
 def transpose(pattern: Pattern, scale_group_list: Optional[List[ScaleGroup]] = None) -> List[PatternInScale]:
     """
      Transpose pattern all possible scales or to selected one.
