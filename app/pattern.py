@@ -19,7 +19,7 @@ _pattern_source = {
             'Chromatic', 'Natural major',
             'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
             'Dorian', 'Phrygian Dominant',
-            'Whole step', 'Whole step - half step', 'Half step - whole step'
+            'Whole step - half step', 'Half step - whole step'
         ],
         pattern=[
             RowNotes(
@@ -33,7 +33,7 @@ _pattern_source = {
             'Natural major',
             'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
             'Dorian', 'Phrygian Dominant',
-            'Whole step', 'Whole step - half step', 'Half step - whole step'
+            'Whole step - half step', 'Half step - whole step'
         ],
         pattern=[
             RowNotes(
@@ -50,7 +50,7 @@ _pattern_source = {
             'Natural major',
             'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
             'Dorian', 'Phrygian Dominant',
-            'Whole step', 'Whole step - half step', 'Half step - whole step'
+            'Whole step - half step', 'Half step - whole step'
         ],
         pattern=[
             RowNotes(
@@ -67,7 +67,7 @@ _pattern_source = {
             'Natural major',
             'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
             'Dorian', 'Phrygian Dominant',
-            'Whole step', 'Whole step - half step', 'Half step - whole step'
+            'Whole step - half step', 'Half step - whole step'
         ],
         pattern=[
             RowNotes(

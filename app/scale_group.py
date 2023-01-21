@@ -15,7 +15,7 @@ def get_scale_formula(scale_name: str) -> ScaleFormula:
         'Blues minor': [3, 2, 1, 1, 3, 2],
         'Dorian': [2, 1, 2, 2, 2, 1, 2],
         'Phrygian Dominant': [1, 3, 1, 2, 1, 2, 2],
-        'Whole step': [2, 2, 2, 2, 2, 2, 2],
+        'Whole step': [2, 2, 2, 2, 2, 2], # todo разобраться, как сделать последнюю ноту
         'Whole step - half step': [2, 1, 2, 1, 2, 1, 2],
         'Half step - whole step': [1, 2, 1, 2, 1, 2, 1],
 

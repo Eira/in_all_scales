@@ -9,7 +9,7 @@ from app.models import TransRowNotes, PatternInKey, PatternInScale, Pattern, Row
 def fixture_test_pattern() -> Pattern:
     pattern = Pattern(
         name='Pattern Triplets',
-        scale_types=['major', 'minor'],
+        scale_types=['Natural major', 'Natural minor'],
         pattern=[
             RowNotes(
                 quants=['123', '234', '345', '456', '567', '678'],

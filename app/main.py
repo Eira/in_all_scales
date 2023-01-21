@@ -1,30 +1,30 @@
 import logging
+from typing import Optional, List
 
 from app.pattern import get_pattern
 from app.transpose import transpose
 from app.transpose_output import transpose_output
 
 
-def main(pattern_name: str) -> None:
+def main(pattern_name: str, user_scale_group: Optional[List[str]] = None) -> int:
     """
     Do the main runner of "Into all scales" project.
 
     Transpose selected by user pattern to all scales, that program know.
     Return group of HTML files, according to amount of scales.
     """
-    # todo test
     #получить данные для паттерна
-    # подготовить данные для паттерна и формулы?
+    #получить данные для scale group
+
+    # подготовить данные для паттерна
     pattern = get_pattern(pattern_name)
-    #scale_formula = get_scale_formula(scale_name)
 
-    # сгенерировать лад
-    #scale_group = get_scales_group(scale_formula)
-
-    # создать списки паттернов по ладам
-    transposed_pattern_list = transpose(pattern)
+    # создать списки паттернов
+    transposed_pattern_list = transpose(pattern, user_scale_group)
     # генерируем файлы
-    transpose_output(transposed_pattern_list)
+    cnt = transpose_output(transposed_pattern_list)
+
+    return cnt
 
 
 if __name__ == '__main__':

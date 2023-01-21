@@ -1,6 +1,9 @@
 from app.main import main
 
 
-def test_main_smoke():
+def test_main_happy_path():
     pattern_name = 'Pattern Up and down'
-    main(pattern_name)
+
+    res = main(pattern_name)
+
+    assert res == 9

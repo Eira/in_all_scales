@@ -39,32 +39,40 @@ def create_trans_row_list(pattern_rows: List[RowNotes], key_scale: List[Key]) ->
     return trans_row_list
 
 
-def transpose(pattern: Pattern, scale_group_list: Optional[List[ScaleGroup]] = None) -> List[PatternInScale]:
+def transpose(pattern: Pattern, user_scale_group: Optional[List[str]] = None) -> List[PatternInScale]:
     """
      Transpose pattern all possible scales or to selected one.
      Return list of objects with patterns for all keys of the scale.
      """
+    # todo добавить возможность получать вместо паттерна Lick
     transposed_pattern_list = []
+    scale_type_list = []
 
-    if scale_group_list is None:
-        for scale_type in pattern.scale_types:
-            scale_group = get_scale_group_from_name(scale_type)
+    if user_scale_group is None:
+        scale_type_list = pattern.scale_types
+    elif user_scale_group:
+        # todo написать условие if user_scale_group is not in pattern.scale_types:
 
-            patterned_key_list = []
-            for key_scale in scale_group.scales:
-                trans_row_list = create_trans_row_list(pattern.pattern, key_scale.scale)
+        scale_type_list = user_scale_group
 
-                patterned_key = PatternInKey(
-                    key_name=key_scale.name,
-                    pattern=trans_row_list,
-                )
-                patterned_key_list.append(patterned_key)
+    for scale_type in scale_type_list:
+        scale_group = get_scale_group_from_name(scale_type)
 
-            transposed_pattern = PatternInScale(
-                scale_type_name=scale_group.name,
-                pattern_name=pattern.name,
-                scales=patterned_key_list,
+        patterned_key_list = []
+        for key_scale in scale_group.scales:
+            trans_row_list = create_trans_row_list(pattern.pattern, key_scale.scale)
+
+            patterned_key = PatternInKey(
+                key_name=key_scale.name,
+                pattern=trans_row_list,
             )
+            patterned_key_list.append(patterned_key)
 
-            transposed_pattern_list.append(transposed_pattern)
+        transposed_pattern = PatternInScale(
+            scale_type_name=scale_group.name,
+            pattern_name=pattern.name,
+            scales=patterned_key_list,
+        )
+
+        transposed_pattern_list.append(transposed_pattern)
     return transposed_pattern_list
