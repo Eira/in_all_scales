@@ -15,13 +15,13 @@ def test_get_scale_formula():
 
 def test_get_scales_group_happy_path():
     scale_formula = ScaleFormula(
-        name='Natural major',
+        name='Major',
         formula=[2, 2, 1, 2, 2, 2, 1],
     )
     res = get_scales_group(scale_formula)
 
     assert res == ScaleGroup(
-        name='Natural major',
+        name='Major',
         scales=[
             Key(
                 name='C',

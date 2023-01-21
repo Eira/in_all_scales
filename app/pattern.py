@@ -16,7 +16,7 @@ _pattern_source = {
     'Pattern Up and down': Pattern(
         name='Pattern Up and down',
         scale_types=[
-            'Chromatic', 'Natural major',
+            'Chromatic', 'Major',
             'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
             'Dorian', 'Phrygian Dominant',
             'Whole step - half step', 'Half step - whole step'
@@ -30,7 +30,7 @@ _pattern_source = {
     'Pattern Triplets': Pattern(
         name='Pattern Triplets',
         scale_types=[
-            'Natural major',
+            'Major',
             'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
             'Dorian', 'Phrygian Dominant',
             'Whole step - half step', 'Half step - whole step'
@@ -47,7 +47,7 @@ _pattern_source = {
     'Pattern In thirds': Pattern(
         name='Pattern In thirds',
         scale_types=[
-            'Natural major',
+            'Major',
             'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
             'Dorian', 'Phrygian Dominant',
             'Whole step - half step', 'Half step - whole step'
@@ -64,7 +64,7 @@ _pattern_source = {
     'Pattern Skip a step': Pattern(
         name='Pattern Skip a step',
         scale_types=[
-            'Natural major',
+            'Major',
             'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
             'Dorian', 'Phrygian Dominant',
             'Whole step - half step', 'Half step - whole step'
@@ -99,6 +99,18 @@ _pattern_source = {
             ),
             RowNotes(
                 quants=['4345', '7547', '5457', '8758'],
+            ),
+        ],
+    ),
+    'Whole step up and down': Pattern(
+        name='Whole step up and down',
+        scale_types=['Whole step'],
+        pattern=[
+            RowNotes(
+                quants=['13', '24', '35', '46', '57'],
+            ),
+            RowNotes(
+                quants=['75', '64', '53', '42', '31'],
             ),
         ],
     ),

@@ -5,7 +5,7 @@ def get_scale_formula(scale_name: str) -> ScaleFormula:
     """Take from the user scale name. Return object with name and scale formula sequence."""
     source = {
         'Chromatic': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        'Natural major': [2, 2, 1, 2, 2, 2, 1],
+        'Major': [2, 2, 1, 2, 2, 2, 1],
         'Pentatonic major': [2, 2, 1, 2, 2, 2, 1],
         'Blues major': [2, 1, 1, 3, 2, 3],
         'Jazz melodic minor': [2, 1, 2, 2, 2, 2, 1],
@@ -15,7 +15,7 @@ def get_scale_formula(scale_name: str) -> ScaleFormula:
         'Blues minor': [3, 2, 1, 1, 3, 2],
         'Dorian': [2, 1, 2, 2, 2, 1, 2],
         'Phrygian Dominant': [1, 3, 1, 2, 1, 2, 2],
-        'Whole step': [2, 2, 2, 2, 2, 2], # todo разобраться, как сделать последнюю ноту
+        'Whole step': [2, 2, 2, 2, 2, 2],
         'Whole step - half step': [2, 1, 2, 1, 2, 1, 2],
         'Half step - whole step': [1, 2, 1, 2, 1, 2, 1],
 
