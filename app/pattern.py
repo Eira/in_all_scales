@@ -15,7 +15,12 @@ _pattern_source = {
     ),
     'Pattern Up and down': Pattern(
         name='Pattern Up and down',
-        scale_types=['major', 'minor'],
+        scale_types=[
+            'Chromatic', 'Natural major',
+            'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
+            'Dorian', 'Phrygian Dominant',
+            'Whole step', 'Whole step - half step', 'Half step - whole step'
+        ],
         pattern=[
             RowNotes(
                 quants=['123', '456', '787', '654', '321'],
@@ -24,7 +29,12 @@ _pattern_source = {
     ),
     'Pattern Triplets': Pattern(
         name='Pattern Triplets',
-        scale_types=['major', 'minor'],
+        scale_types=[
+            'Natural major',
+            'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
+            'Dorian', 'Phrygian Dominant',
+            'Whole step', 'Whole step - half step', 'Half step - whole step'
+        ],
         pattern=[
             RowNotes(
                 quants=['123', '234', '345', '456', '567', '678'],
@@ -36,7 +46,12 @@ _pattern_source = {
     ),
     'Pattern In thirds': Pattern(
         name='Pattern In thirds',
-        scale_types=['minor'],
+        scale_types=[
+            'Natural major',
+            'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
+            'Dorian', 'Phrygian Dominant',
+            'Whole step', 'Whole step - half step', 'Half step - whole step'
+        ],
         pattern=[
             RowNotes(
                 quants=['13', '24', '35', '46', '57', '68', '72'],
@@ -48,7 +63,12 @@ _pattern_source = {
     ),
     'Pattern Skip a step': Pattern(
         name='Pattern Skip a step',
-        scale_types=['minor'],
+        scale_types=[
+            'Natural major',
+            'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
+            'Dorian', 'Phrygian Dominant',
+            'Whole step', 'Whole step - half step', 'Half step - whole step'
+        ],
         pattern=[
             RowNotes(
                 quants=['1342', '3564', '5786', '7238'],
@@ -60,7 +80,7 @@ _pattern_source = {
     ),
     'Pattern Minor Pentatonic Skip a step': Pattern(
         name='Pattern Minor Pentatonic Skip a step',
-        scale_types=['minor'],
+        scale_types=['Pentatonic minor'],
         pattern=[
             RowNotes(
                 quants=['1453', '4785', '3574', '7348'],
@@ -72,7 +92,7 @@ _pattern_source = {
     ),
     'Pattern Slow Minor Pentatonic Build up': Pattern(
         name='Pattern Slow Minor Pentatonic Build up',
-        scale_types=['minor'],
+        scale_types=['Pentatonic minor'],
         pattern=[
             RowNotes(
                 quants=['1713', '4314', '3134', '5435'],
@@ -82,7 +102,6 @@ _pattern_source = {
             ),
         ],
     ),
-    'pentatonic scale': [1, 3, 4, 5, 7, 8, 7, 5, 4, 3, 1],
     'blues scale': [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
 }
 

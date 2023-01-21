@@ -17,7 +17,7 @@ def get_scale_formula(scale_name: str) -> ScaleFormula:
         'Phrygian Dominant': [1, 3, 1, 2, 1, 2, 2],
         'Whole step': [2, 2, 2, 2, 2, 2, 2],
         'Whole step - half step': [2, 1, 2, 1, 2, 1, 2],
-        'Half step - whole step:': [1, 2, 1, 2, 1, 2, 1],
+        'Half step - whole step': [1, 2, 1, 2, 1, 2, 1],
 
     }.get(scale_name)
 
