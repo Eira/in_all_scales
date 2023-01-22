@@ -8,6 +8,7 @@ packages = [{include = "in_all_scales"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+pyhtml2pdf = "^0.0.6"
 
 
 [tool.poetry.group.dev.dependencies]

@@ -1,3 +1,6 @@
+import os
+from pyhtml2pdf import converter
+
 from typing import List
 
 from app.create_html import create_transposed_pattern_html
@@ -90,10 +93,13 @@ footer {
 </html>
 """.format(pattern=pattern_name, scale_group=scale_type_name, title=title, styles=plain_css, data=transposed_pattern_html)
 
-        file_name = f"results/{scale_type_name.replace(' ', '_').lower()}_{pattern_name.replace(' ', '_').lower()}"
+        file_name = f"/tmp/into_all_scales/{scale_type_name.replace(' ', '_').lower()}_{pattern_name.replace(' ', '_').lower()}"
         html_file = open(f"{file_name}.html", 'w+')
         html_file.write(html_code)
         html_file.close()
+
+        path = os.path.abspath(f'{file_name}.html')
+        converter.convert(f'file:///temp/into_all_scales/{path}', f'{file_name}.pdf')
 
         cnt += 1
 
