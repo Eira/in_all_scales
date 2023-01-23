@@ -20,8 +20,13 @@ def transpose_output(transposed_pattern_list: List[PatternInScale]) -> int:
         title = f'{scale_type_name}, {pattern_name}'
         plain_css = """html {
     position: relative;
-    min_height: 100%;
+    min-height: 100%;
 }
+
+body {
+    test-align: center;
+}
+
 h1 {
     position: absolute;
     top: 10px;
@@ -51,14 +56,21 @@ footer {
 }
 
 .header {
-    margin: auto;
-    width: 800px;
     text-align: center;
 }
 .content {
+    position: relative;
     margin: auto;
-    width: 800px;
     text-align: center;
+}
+
+section {
+    display: inline-block;
+    min-width: max-content;
+    width: 48%;
+    margin-right: 10px;
+    margin-left: 10px;
+    
 }
 
 .pattern {
@@ -99,7 +111,7 @@ footer {
         html_file.close()
 
         path = os.path.abspath(f'{file_name}.html')
-        converter.convert(f'file:///{path}', f'{file_name}.pdf')
+        converter.convert(f'file:///{path}', f'{file_name}.pdf', print_options={"marginTop": 0, "marginRight": 0, "marginBottom": 0, "marginLeft": 0, "landscape": True})
 
         cnt += 1
 
