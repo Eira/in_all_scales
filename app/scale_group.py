@@ -4,20 +4,20 @@ from app.models import ScaleFormula, ScaleGroup, Key
 def get_scale_formula(scale_name: str) -> ScaleFormula:
     """Take from the user scale name. Return object with name and scale formula sequence."""
     source = {
-        'Chromatic': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         'Major': [2, 2, 1, 2, 2, 2, 1],
-        'Pentatonic major': [2, 2, 1, 2, 2, 2, 1],
-        'Blues major': [2, 1, 1, 3, 2, 3],
+        'Natural minor': [2, 1, 2, 2, 1, 2, 2],
         'Jazz melodic minor': [2, 1, 2, 2, 2, 2, 1],
         'Harmonic minor': [2, 1, 2, 2, 1, 3, 1],
-        'Natural minor': [2, 1, 2, 2, 1, 2, 2],
-        'Pentatonic minor': [2, 1, 2, 2, 1, 2, 2],
-        'Blues minor': [3, 2, 1, 1, 3, 2],
         'Dorian': [2, 1, 2, 2, 2, 1, 2],
         'Phrygian Dominant': [1, 3, 1, 2, 1, 2, 2],
-        'Whole step': [2, 2, 2, 2, 2, 2],
-        'Whole step - half step': [2, 1, 2, 1, 2, 1, 2],
-        'Half step - whole step': [1, 2, 1, 2, 1, 2, 1],
+        'Blues major': [2, 1, 1, 3, 2, 3],
+        'Blues minor': [3, 2, 1, 1, 3, 2],
+        'Pentatonic major': [2, 2, 1, 2, 2, 2, 1],
+        'Pentatonic minor': [2, 1, 2, 2, 1, 2, 2],
+        'Whole-Tone': [2, 2, 2, 2, 2, 2],
+        'Half-Whole': [2, 1, 2, 1, 2, 1, 2],
+        'Whole-Half': [1, 2, 1, 2, 1, 2, 1],
+        'Chromatic': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 
     }.get(scale_name)
 

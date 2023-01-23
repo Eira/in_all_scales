@@ -8,7 +8,7 @@ from app.models import TransRowNotes, PatternInKey, PatternInScale, Pattern, Row
 @pytest.fixture()
 def fixture_test_pattern() -> Pattern:
     pattern = Pattern(
-        name='Pattern Triplets',
+        name='Triplets',
         scale_types=['Major', 'Natural minor'],
         pattern=[
             RowNotes(
