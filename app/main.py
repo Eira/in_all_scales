@@ -19,6 +19,8 @@ def main(pattern_name: str, user_scale_group: Optional[List[str]] = None) -> int
     # подготовить данные для паттерна
     pattern = get_pattern(pattern_name)
 
+
+
     # создать списки паттернов
     transposed_pattern_list = transpose(pattern, user_scale_group)
     # генерируем файлы

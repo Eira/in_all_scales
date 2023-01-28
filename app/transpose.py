@@ -1,6 +1,6 @@
-from typing import List, Optional
+from typing import List, Optional, Set, Union
 
-from app.models import Key, TransRowNotes, RowNotes, Pattern, ScaleGroup, PatternInScale, PatternInKey
+from app.models import Key, TransRowNotes, RowNotes, Pattern, ScaleGroup, PatternInScale, PatternInKey, PatternType
 from app.scale_group import get_scale_group_from_name
 
 
@@ -39,21 +39,23 @@ def create_trans_row_list(pattern_rows: List[RowNotes], key_scale: List[Key]) ->
     return trans_row_list
 
 
-def transpose(pattern: Pattern, user_scale_group: Optional[List[str]] = None) -> List[PatternInScale]:
+def transpose(pattern: PatternType, user_scale_group: Optional[Set[str]] = None) -> List[PatternInScale]:
     """
      Transpose pattern all possible scales or to selected one.
      Return list of objects with patterns for all keys of the scale.
      """
-    # todo добавить возможность получать вместо паттерна Lick
     transposed_pattern_list = []
     scale_type_list = []
 
     if user_scale_group is None:
         scale_type_list = pattern.scale_types
     elif user_scale_group:
-        # todo написать условие if user_scale_group is not in pattern.scale_types:
+        # todo написать условие if user_scale_group is not in pattern.scale_types: вынести в мейн , проверить пересечение множеств
 
-        scale_type_list = user_scale_group
+        scale_type_list = pattern.scale_types & user_scale_group
+
+    if not scale_type_list:
+        raise Exception()
 
     for scale_type in scale_type_list:
         scale_group = get_scale_group_from_name(scale_type)

@@ -103,7 +103,13 @@ section {
         <footer>©"Into all scales" created by Irina Eiduk, 2023</footer>
     </body>
 </html>
-""".format(pattern=pattern_name, scale_group=scale_type_name, title=title, styles=plain_css, data=transposed_pattern_html)
+""".format(
+            pattern=pattern_name,
+            scale_group=scale_type_name,
+            title=title,
+            styles=plain_css,
+            data=transposed_pattern_html,
+        )
 
         file_name = f"results/{scale_type_name.replace(' ', '_').lower()}_{pattern_name.replace(' ', '_').lower()}"
         html_file = open(f"{file_name}.html", 'w+')
@@ -111,7 +117,19 @@ section {
         html_file.close()
 
         path = os.path.abspath(f'{file_name}.html')
-        converter.convert(f'file:///{path}', f'{file_name}.pdf', print_options={"marginTop": 0, "marginRight": 0, "marginBottom": 0, "marginLeft": 0, "landscape": True})
+        converter.convert(
+            f'file:///{path}',
+            f'{file_name}.pdf',
+            print_options={
+                "marginTop": 0,
+                "marginRight": 0,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "landscape": True,
+                "paperWidth": 15,
+                "paperHeight": 17,
+            }
+        )
 
         cnt += 1
 

@@ -1,4 +1,4 @@
-from app.models import Pattern, RowNotes
+from app.models import Pattern, RowNotes, Lick, PatternType
 
 _pattern_source = {
     'test scale': Pattern(
@@ -165,11 +165,33 @@ _pattern_source = {
             ),
         ],
     ),
+    'The Lick': Lick(
+        name='The Lick',
+        scale_types=[
+            'Dorian',
+        ],
+        pattern=[
+            RowNotes(
+                quants=['56786', '45'],
+            ),
+        ],
+    ),
+    'Harmonic Minor lick': Lick(
+        name='The Lick',
+        scale_types=[
+            'Harmonic minor',
+        ],
+        pattern=[
+            RowNotes(
+                quants=['71', '23', '45', '24', '37', '21', '54', '3', '1'],
+            ),
+        ],
+    ),
     'blues scale': [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
 }
 
 
-# todo вероятно пригодится
+# todo вероятно пригодится переписать еще для lick
 def create_pattern(pattern_name: str, scale_types: str, pattern: str) -> Pattern:
     """Create pattern object from users data."""
     scale_types_list = scale_types.strip().split(',')
@@ -188,7 +210,7 @@ def create_pattern(pattern_name: str, scale_types: str, pattern: str) -> Pattern
     )
 
 
-def get_pattern(pattern_name: str) -> Pattern:
+def get_pattern(pattern_name: str) -> PatternType:
     """Take from the user pattern name. Return object with name and pattern sequence."""
     pattern = _pattern_source.get(pattern_name)
 

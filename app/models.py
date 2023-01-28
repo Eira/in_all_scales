@@ -1,6 +1,6 @@
 """Whole project types."""
 from dataclasses import dataclass
-from typing import List
+from typing import List, Set
 
 
 @dataclass
@@ -10,19 +10,20 @@ class RowNotes:
 
 
 @dataclass
-class Pattern:
-    """Pattern with numbers."""
+class PatternType:
     name: str
-    scale_types: List[str]
+    scale_types: Set[str]  # todo set
     pattern: List[RowNotes]
 
 
 @dataclass
-class Lick:
+class Pattern(PatternType):
+    """Pattern with numbers."""
+
+
+@dataclass
+class Lick(PatternType):
     """Lick with numbers."""
-    name: str
-    scale_types: List[str]
-    pattern: List[RowNotes]
 
 
 @dataclass
