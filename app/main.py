@@ -1,12 +1,12 @@
 import logging
-from typing import Optional, List
+from typing import Optional, List, Set
 
 from app.pattern import get_pattern
 from app.transpose import transpose
 from app.transpose_output import transpose_output
 
 
-def main(pattern_name: str, user_scale_group: Optional[List[str]] = None) -> int:
+def main(pattern_name: str, user_scale_group: Optional[Set[str]] = None) -> int:
     """
     Do the main runner of "Into all scales" project.
 
@@ -18,7 +18,10 @@ def main(pattern_name: str, user_scale_group: Optional[List[str]] = None) -> int
 
     # подготовить данные для паттерна
     pattern = get_pattern(pattern_name)
-
+    if not pattern:
+    #     run error
+    if pattern.scale_types <> user_scale_group and user_scale_group:
+    #     run error
 
 
     # создать списки паттернов

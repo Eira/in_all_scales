@@ -3,7 +3,7 @@ from app.models import Pattern, RowNotes, Lick, PatternType
 _pattern_source = {
     'test scale': Pattern(
         name='test scale',
-        scale_types=['scale 1', 'scale 2'],
+        scale_types={'scale 1', 'scale 2'},
         pattern=[
             RowNotes(
                 quants=['123', '24', '5'],
@@ -15,13 +15,13 @@ _pattern_source = {
     ),
     'Up and down': Pattern(
         name='Up and down',
-        scale_types=[
+        scale_types={
             'Major',
             'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
             'Dorian', 'Phrygian Dominant',
             'Whole-Tone',
             'Half-Whole', 'Whole-Half'
-        ],
+        },
         pattern=[
             RowNotes(
                 quants=['123', '456', '717', '654', '321'],
@@ -30,9 +30,9 @@ _pattern_source = {
     ),
     'Minor Pentatonic Up and down': Pattern(
         name='Minor Pentatonic Up and down',
-        scale_types=[
+        scale_types={
             'Natural minor',
-        ],
+        },
         pattern=[
             RowNotes(
                 quants=['134578'],
@@ -44,9 +44,9 @@ _pattern_source = {
     ),
     'Major Pentatonic Up and Down': Pattern(
         name='Major Pentatonic Up and Down',
-        scale_types=[
+        scale_types={
             'Major',
-        ],
+        },
         pattern=[
             RowNotes(
                 quants=['123568'],
@@ -58,11 +58,11 @@ _pattern_source = {
     ),
     'Triplets': Pattern(
         name='Triplets',
-        scale_types=[
+        scale_types={
             'Major',
             'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
             'Dorian', 'Phrygian Dominant',
-        ],
+        },
         pattern=[
             RowNotes(
                 quants=['123', '234', '345', '456', '567', '678'],
@@ -74,11 +74,11 @@ _pattern_source = {
     ),
     'Run': Pattern(
         name='Run',
-        scale_types=[
+        scale_types={
             'Major',
             'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
             'Dorian', 'Phrygian Dominant',
-        ],
+        },
         pattern=[
             RowNotes(
                 quants=['1232', '3454', '5676', '7121'],
@@ -90,12 +90,12 @@ _pattern_source = {
     ),
     'In thirds': Pattern(
         name='In thirds',
-        scale_types=[
+        scale_types={
             'Major',
             'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
             'Dorian', 'Phrygian Dominant',
             'Half-Whole', 'Whole-Half'
-        ],
+        },
         pattern=[
             RowNotes(
                 quants=['13', '24', '35', '46', '57', '68', '72'],
@@ -107,11 +107,11 @@ _pattern_source = {
     ),
     'Skip a step': Pattern(
         name='Skip a step',
-        scale_types=[
+        scale_types={
             'Major',
             'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
             'Dorian', 'Phrygian Dominant',
-        ],
+        },
         pattern=[
             RowNotes(
                 quants=['1342', '3564', '5786', '7238'],
@@ -123,7 +123,7 @@ _pattern_source = {
     ),
     'Minor Pentatonic Skip a step': Pattern(
         name='Minor Pentatonic Skip a step',
-        scale_types=['Pentatonic minor'],
+        scale_types={'Pentatonic minor'},
         pattern=[
             RowNotes(
                 quants=['1453', '4785', '3574', '7348'],
@@ -135,7 +135,7 @@ _pattern_source = {
     ),
     'Slow Minor Pentatonic Build up': Pattern(
         name='Slow Minor Pentatonic Build up',
-        scale_types=['Pentatonic minor'],
+        scale_types={'Pentatonic minor'},
         pattern=[
             RowNotes(
                 quants=['1713', '4314', '3134', '5435'],
@@ -147,7 +147,7 @@ _pattern_source = {
     ),
     'Whole tone up and down': Pattern(
         name='Whole tone up and down',
-        scale_types=['Whole-Tone'],
+        scale_types={'Whole-Tone'},
         pattern=[
             RowNotes(
                 quants=['1234567654321'],
@@ -156,9 +156,9 @@ _pattern_source = {
     ),
     'Chromatic Run': Pattern(
         name='Chromatic Run',
-        scale_types=[
+        scale_types={
             'Chromatic',
-        ],
+        },
         pattern=[
             RowNotes(
                 quants=['1232', '3454', '5676', '7898', '9,10,11,10', '11,12,13,12'],
@@ -167,9 +167,9 @@ _pattern_source = {
     ),
     'The Lick': Lick(
         name='The Lick',
-        scale_types=[
+        scale_types={
             'Dorian',
-        ],
+        },
         pattern=[
             RowNotes(
                 quants=['56786', '45'],
@@ -178,9 +178,9 @@ _pattern_source = {
     ),
     'Harmonic Minor lick': Lick(
         name='The Lick',
-        scale_types=[
+        scale_types={
             'Harmonic minor',
-        ],
+        },
         pattern=[
             RowNotes(
                 quants=['71', '23', '45', '24', '37', '21', '54', '3', '1'],
