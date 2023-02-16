@@ -10,3 +10,8 @@ $ source venv/bin/activate
 $ pip install -U poetry
 $ poetry install
 ```
+
+### Local run tests
+```shell
+$ python -m pytest
+```

@@ -2,7 +2,7 @@ from typing import List
 
 import pytest
 
-from app.models import TransRowNotes, PatternInKey, PatternInScale, Pattern, RowNotes
+from app.models import Pattern, RowNotes, TransRowNotes, PatternInScale, PatternInKey
 
 
 @pytest.fixture()

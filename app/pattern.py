@@ -194,7 +194,7 @@ _pattern_source = {
 # todo вероятно пригодится переписать еще для lick
 def create_pattern(pattern_name: str, scale_types: str, pattern: str) -> Pattern:
     """Create pattern object from users data."""
-    scale_types_list = scale_types.strip().split(',')
+    scale_types_list = set(scale_types.strip().split(','))
     source_row_list = pattern.strip().split(' ')
     row_list = []
     for source_row in source_row_list:

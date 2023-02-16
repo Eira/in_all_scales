@@ -19,9 +19,13 @@ def main(pattern_name: str, user_scale_group: Optional[Set[str]] = None) -> int:
     # подготовить данные для паттерна
     pattern = get_pattern(pattern_name)
     if not pattern:
-    #     run error
-    if pattern.scale_types <> user_scale_group and user_scale_group:
-    #     run error
+        logging.warning('There no such a pattern or lick in program.')
+        # Todo предложить создать
+        # todo test
+    if user_scale_group in pattern.scale_types:
+        logging.warning('This scale is not applicable for this pattern or lick.')
+        # Todo предложить выбрать из возможных
+        # todo test
 
 
     # создать списки паттернов

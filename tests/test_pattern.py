@@ -11,7 +11,7 @@ def test_create_pattern_happy_path():
 
     assert res == Pattern(
         name='test pattern',
-        scale_types=['scale 1', 'scale 2'],
+        scale_types={'scale 1', 'scale 2'},
         pattern=[
             RowNotes(
                 quants=['123', '24', '5'],
@@ -30,7 +30,7 @@ def test_get_pattern():
 
     assert res == Pattern(
         name='test scale',
-        scale_types=['scale 1', 'scale 2'],
+        scale_types={'scale 1', 'scale 2'},
         pattern=[
             RowNotes(
                 quants=['123', '24', '5'],

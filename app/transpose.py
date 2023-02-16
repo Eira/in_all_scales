@@ -50,9 +50,7 @@ def transpose(pattern: PatternType, user_scale_group: Optional[Set[str]] = None)
     if user_scale_group is None:
         scale_type_list = pattern.scale_types
     elif user_scale_group:
-        # todo написать условие if user_scale_group is not in pattern.scale_types: вынести в мейн , проверить пересечение множеств
-
-        scale_type_list = pattern.scale_types & user_scale_group
+        scale_type_list = user_scale_group
 
     if not scale_type_list:
         raise Exception()

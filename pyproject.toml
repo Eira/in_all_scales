@@ -1,10 +1,9 @@
 [tool.poetry]
-name = "in-all-scales"
+name = "into-all-scales"
 version = "0.1.0"
 description = ""
 authors = ["Irina <eira@mail.ru>"]
 readme = "README.md"
-packages = [{include = "in_all_scales"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
