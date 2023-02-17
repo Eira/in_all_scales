@@ -70,7 +70,6 @@ section {
     width: 48%;
     margin-right: 10px;
     margin-left: 10px;
-    
 }
 
 .pattern {

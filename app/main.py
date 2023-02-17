@@ -1,5 +1,5 @@
 import logging
-from typing import Optional, List, Set
+from typing import Optional, Set
 
 from app.pattern import get_pattern
 from app.transpose import transpose
@@ -13,8 +13,8 @@ def main(pattern_name: str, user_scale_group: Optional[Set[str]] = None) -> int:
     Transpose selected by user pattern to all scales, that program know.
     Return group of HTML files, according to amount of scales.
     """
-    #получить данные для паттерна
-    #получить данные для scale group
+    # получить данные для паттерна
+    # получить данные для scale group
 
     # подготовить данные для паттерна
     pattern = get_pattern(pattern_name)
@@ -26,7 +26,6 @@ def main(pattern_name: str, user_scale_group: Optional[Set[str]] = None) -> int:
         logging.warning('This scale is not applicable for this pattern or lick.')
         # Todo предложить выбрать из возможных
         # todo test
-
 
     # создать списки паттернов
     transposed_pattern_list = transpose(pattern, user_scale_group)

@@ -12,7 +12,7 @@ class RowNotes:
 @dataclass
 class PatternType:
     name: str
-    scale_types: Set[str]  # todo set
+    scale_types: Set[str]
     pattern: List[RowNotes]
 
 

@@ -1,6 +1,6 @@
-from typing import List, Optional, Set, Union
+from typing import List, Optional, Set
 
-from app.models import Key, TransRowNotes, RowNotes, Pattern, ScaleGroup, PatternInScale, PatternInKey, PatternType
+from app.models import Key, TransRowNotes, RowNotes, PatternInScale, PatternInKey, PatternType
 from app.scale_group import get_scale_group_from_name
 
 
@@ -45,7 +45,7 @@ def transpose(pattern: PatternType, user_scale_group: Optional[Set[str]] = None)
      Return list of objects with patterns for all keys of the scale.
      """
     transposed_pattern_list = []
-    scale_type_list = []
+    scale_type_list: Set[str] = {}
 
     if user_scale_group is None:
         scale_type_list = pattern.scale_types

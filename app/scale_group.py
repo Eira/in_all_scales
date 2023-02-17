@@ -104,7 +104,7 @@ def get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
 
 def get_scale_group_from_name(scale_name: str) -> ScaleGroup:
     """Create scale object from the name."""
-    #todo test
+    # todo test
     formula = get_scale_formula(scale_name)
     scale_group = get_scales_group(formula)
 
