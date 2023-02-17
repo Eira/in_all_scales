@@ -1,7 +1,7 @@
 from typing import List
 
+from app.models import RowNotes, PatternInScale, PatternInKey, TransRowNotes
 from app.transpose import create_trans_quant, create_trans_row, create_trans_row_list, transpose
-from app.models import RowNotes, PatternInScale, Key, ScaleGroup, PatternInKey, TransRowNotes
 
 
 def test_create_trans_quant_smoke():

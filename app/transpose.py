@@ -4,7 +4,7 @@ from app.models import Key, TransRowNotes, RowNotes, PatternInScale, PatternInKe
 from app.scale_group import get_scale_group_from_name
 
 
-def create_trans_quant(quant: str, key_scale: List[Key]) -> str:
+def create_trans_quant(quant: str, key_scale: List[str]) -> str:
     """Transpose the quant in scale row to letters notes."""
     trans_note_list = ''
     for note in quant:
@@ -12,7 +12,7 @@ def create_trans_quant(quant: str, key_scale: List[Key]) -> str:
     return trans_note_list.strip()
 
 
-def create_trans_row(row: List[str], key_scale: List[Key]) -> TransRowNotes:
+def create_trans_row(row: List[str], key_scale: List[str]) -> TransRowNotes:
     """Gather transposed quants to the row."""
     trans_quant_list = []
 
@@ -28,7 +28,7 @@ def create_trans_row(row: List[str], key_scale: List[Key]) -> TransRowNotes:
     return trans_row
 
 
-def create_trans_row_list(pattern_rows: List[RowNotes], key_scale: List[Key]) -> List[TransRowNotes]:
+def create_trans_row_list(pattern_rows: List[RowNotes], key_scale: List[str]) -> List[TransRowNotes]:
     """Gather transposed rows to lists."""
     trans_row_list = []
 
@@ -45,7 +45,7 @@ def transpose(pattern: PatternType, user_scale_group: Optional[Set[str]] = None)
      Return list of objects with patterns for all keys of the scale.
      """
     transposed_pattern_list = []
-    scale_type_list: Set[str] = {}
+    scale_type_list: Set[str] = set()
 
     if user_scale_group is None:
         scale_type_list = pattern.scale_types
@@ -60,6 +60,7 @@ def transpose(pattern: PatternType, user_scale_group: Optional[Set[str]] = None)
 
         patterned_key_list = []
         for key_scale in scale_group.scales:
+            print(key_scale.scale)
             trans_row_list = create_trans_row_list(pattern.pattern, key_scale.scale)
 
             patterned_key = PatternInKey(

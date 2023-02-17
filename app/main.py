@@ -11,7 +11,7 @@ def main(pattern_name: str, user_scale_group: Optional[Set[str]] = None) -> int:
     Do the main runner of "Into all scales" project.
 
     Transpose selected by user pattern to all scales, that program know.
-    Return group of HTML files, according to amount of scales.
+    Return group of PDF files, according to amount of scales.
     """
     # получить данные для паттерна
     # получить данные для scale group
@@ -22,7 +22,9 @@ def main(pattern_name: str, user_scale_group: Optional[Set[str]] = None) -> int:
         logging.warning('There no such a pattern or lick in program.')
         # Todo предложить создать
         # todo test
-    if user_scale_group in pattern.scale_types:
+        return
+    if user_scale_group not in pattern.scale_types:
+        # todo тут какая то ерудна
         logging.warning('This scale is not applicable for this pattern or lick.')
         # Todo предложить выбрать из возможных
         # todo test
@@ -41,4 +43,4 @@ if __name__ == '__main__':
         format='%(asctime)s %(levelname)-8s %(message)s',  # noqa: WPS323
     )
 
-    main('test_pattern_name', 'test_scale_name')
+    main('test_pattern_name', {'test_scale_name'})
