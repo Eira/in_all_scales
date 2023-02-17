@@ -1,4 +1,3 @@
-from app.transpose_output import transpose_output
 from app.create_html import create_quant_html, create_row_html, create_key_html, create_transposed_pattern_html
 
 
