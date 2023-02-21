@@ -1,4 +1,4 @@
-from app.models import Pattern, RowNotes, Lick, PatternType
+from app.models import Lick, Pattern, PatternType, RowNotes
 
 _pattern_source: dict[str, PatternType] = {
     'test scale': Pattern(

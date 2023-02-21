@@ -10,7 +10,7 @@ def test_main_happy_path():
 
 
 def test_main_wrong_pattern():
-    pattern_name = 'random pattern'
+    pattern_name = 'test scale'
 
     res = main(pattern_name)
 

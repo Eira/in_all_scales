@@ -1,7 +1,7 @@
 import os
-from pyhtml2pdf import converter  # type: ignore
-
 from typing import List
+
+from pyhtml2pdf import converter  # type: ignore
 
 from app.create_html import create_transposed_pattern_html
 from app.models import PatternInScale

@@ -1,5 +1,6 @@
-from app.models import ScaleFormula, ScaleGroup, Key
-from app.scale_group import get_scale_formula, get_scales_group, get_scale_group_from_name
+from app.models import Key, ScaleFormula, ScaleGroup
+from app.scale_group import (get_scale_formula, get_scale_group_from_name,
+                             get_scales_group)
 
 
 def test_get_scale_formula():

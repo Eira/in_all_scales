@@ -1,6 +1,9 @@
+"""This module create HTML code with transposed patterns of licks."""
+
 from typing import List, Optional, Set
 
-from app.models import Key, TransRowNotes, RowNotes, PatternInScale, PatternInKey, PatternType
+from app.models import (PatternInKey, PatternInScale, PatternType,
+                        RowNotes, TransRowNotes)
 from app.scale_group import get_scale_group_from_name
 
 

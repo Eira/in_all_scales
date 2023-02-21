@@ -1,4 +1,4 @@
-from app.models import ScaleFormula, ScaleGroup, Key
+from app.models import Key, ScaleFormula, ScaleGroup
 
 
 def get_scale_formula(scale_name: str) -> ScaleFormula:
