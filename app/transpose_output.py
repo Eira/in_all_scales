@@ -1,5 +1,5 @@
 import os
-from pyhtml2pdf import converter
+from pyhtml2pdf import converter  # type: ignore
 
 from typing import List
 

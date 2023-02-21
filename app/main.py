@@ -22,7 +22,7 @@ def main(pattern_name: str, user_scale_group: Optional[Set[str]] = None) -> int:
         logging.warning('There no such a pattern or lick in program.')
         # Todo предложить создать
         # todo test
-        return
+        return 0
     if user_scale_group not in pattern.scale_types:
         # todo тут какая то ерудна
         logging.warning('This scale is not applicable for this pattern or lick.')

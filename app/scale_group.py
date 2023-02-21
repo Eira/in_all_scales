@@ -20,6 +20,8 @@ def get_scale_formula(scale_name: str) -> ScaleFormula:
         'Chromatic': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 
     }.get(scale_name)
+    if not source:
+        raise RuntimeError
 
     scale_formula = ScaleFormula(
         name=scale_name,

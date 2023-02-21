@@ -1,6 +1,6 @@
 from app.models import Pattern, RowNotes, Lick, PatternType
 
-_pattern_source = {
+_pattern_source: dict[str, PatternType] = {
     'test scale': Pattern(
         name='test scale',
         scale_types={'scale 1', 'scale 2'},
@@ -187,7 +187,7 @@ _pattern_source = {
             ),
         ],
     ),
-    'blues scale': [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
+#    'blues scale': [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
 }
 
 
@@ -213,5 +213,7 @@ def create_pattern(pattern_name: str, scale_types: str, pattern: str) -> Pattern
 def get_pattern(pattern_name: str) -> PatternType:
     """Take from the user pattern name. Return object with name and pattern sequence."""
     pattern = _pattern_source.get(pattern_name)
+    if not pattern:
+        raise RuntimeError
 
     return pattern
