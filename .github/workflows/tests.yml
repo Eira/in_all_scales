@@ -1,0 +1,39 @@
+name: tests
+
+on: [push]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9']
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        pip install poetry
+        poetry --version
+        poetry install
+
+    - uses: shogo82148/actions-setup-redis@v1
+      with:
+        redis-version: 'latest'
+    - run: redis-cli ping
+
+    - name: Run tests
+      run: |
+        echo 'bot_token=${{ secrets.TELEGRAM_BOT_TOKEN_TEST }}' > .env
+        poetry run pytest --cov app --cov-report=xml
+
+    - name: Codecov
+      uses: codecov/codecov-action@v3.1.1
+      with:
+        fail_ci_if_error: true
+        files: ./coverage.xml

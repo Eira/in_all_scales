@@ -5,7 +5,7 @@ An instrument to transform musical patterns to all scales.
 ```shell
 $ git clone git@github.com:Eira/into_all_scales.git
 $ cd into_all_scales
-$ python3.9 -m venv venv
+$ python3.11 -m venv venv
 $ source venv/bin/activate
 $ pip install -U poetry
 $ poetry install
