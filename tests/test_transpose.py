@@ -1,15 +1,15 @@
 from typing import List
 
 from app.models import PatternInKey, PatternInScale, RowNotes, TransRowNotes
-from app.transpose import (create_trans_quant, create_trans_row,
-                           create_trans_row_list, transpose)
+from app.transpose import (_create_trans_quant, _create_trans_row,
+                           _create_trans_row_list, transpose)
 
 
 def test_create_trans_quant_smoke():
     quant = '234'
     key_scale = ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'B', 'C']
 
-    res = create_trans_quant(quant, key_scale)
+    res = _create_trans_quant(quant, key_scale)
 
     assert res is not None
 
@@ -18,7 +18,7 @@ def test_create_trans_row_smoke():
     row = ['123', '234', '345', '456', '567', '678']
     key_scale = ['Cb', 'D', 'E', 'F', 'G', 'A', 'B', 'C']
 
-    res = create_trans_row(row, key_scale)
+    res = _create_trans_row(row, key_scale)
 
     assert res is not None
 
@@ -27,7 +27,7 @@ def test_create_trans_row_list_smoke():
     pattern_rows = [RowNotes(quants=['123', '234', '345', '456', '567', '678']), RowNotes(quants=['765', '654', '543', '432', '321'])]
     key_scale = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C']
 
-    res = create_trans_row_list(pattern_rows, key_scale)
+    res = _create_trans_row_list(pattern_rows, key_scale)
 
     assert res is not None
 
