@@ -1,12 +1,12 @@
 from app.models import Key, ScaleFormula, ScaleGroup
-from app.scale_group import (get_scale_formula, get_scale_group_from_name,
+from app.scale_group import (_get_scale_formula, get_scale_group_from_name,
                              get_scales_group)
 
 
 def test_get_scale_formula():
     scale_name = 'Natural minor'
 
-    res = get_scale_formula(scale_name)
+    res = _get_scale_formula(scale_name)
 
     assert res == ScaleFormula(
         name='Natural minor',

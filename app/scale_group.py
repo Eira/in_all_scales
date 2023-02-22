@@ -7,7 +7,7 @@ As well as functions for scale processing.
 from app.models import Key, ScaleFormula, ScaleGroup
 
 
-def get_scale_formula(scale_name: str) -> ScaleFormula:
+def _get_scale_formula(scale_name: str) -> ScaleFormula:
     """Take from the user scale name. Return object with name and scale formula sequence."""
     source = {
         'Major': [2, 2, 1, 2, 2, 2, 1],
@@ -109,6 +109,6 @@ def get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
 
 def get_scale_group_from_name(scale_name: str) -> ScaleGroup:
     """Create scale object from the name."""
-    formula = get_scale_formula(scale_name)
+    formula = _get_scale_formula(scale_name)
 
     return get_scales_group(formula)
