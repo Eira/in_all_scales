@@ -2,8 +2,7 @@
 
 from typing import List, Optional, Set
 
-from app.models import (PatternInKey, PatternInScale, PatternType, RowNotes,
-                        TransRowNotes)
+from app.models import PatternInKey, PatternInScale, PatternType, RowNotes, TransRowNotes
 from app.scale_group import get_scale_group_from_name
 
 
@@ -42,10 +41,10 @@ def _create_trans_row_list(pattern_rows: List[RowNotes], key_scale: List[str]) -
 
 def transpose(pattern: PatternType, user_scale_group: Optional[Set[str]] = None) -> List[PatternInScale]:
     """
-     Transpose pattern all possible scales or to selected one.
+    Transpose pattern all possible scales or to selected one.
 
-     Return list of objects with patterns for all keys of the scale.
-     """
+    Return list of objects with patterns for all keys of the scale.
+    """
     transposed_pattern_list = []
     scale_type_list: Set[str] = set()
 

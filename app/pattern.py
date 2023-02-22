@@ -1,3 +1,9 @@
+"""
+This module contain descriptions of all patterns and licks.
+
+And also functions for creating and getting patterns.
+"""
+
 from app.models import Lick, Pattern, PatternType, RowNotes
 
 _pattern_source: dict[str, PatternType] = {
@@ -17,10 +23,18 @@ _pattern_source: dict[str, PatternType] = {
         name='Up and down',
         scale_types={
             'Major',
-            'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
-            'Dorian', 'Phrygian Dominant',
+
+            'Natural minor',
+            'Jazz melodic minor',
+            'Harmonic minor',
+
+            'Dorian',
+            'Phrygian Dominant',
+
             'Whole-Tone',
-            'Half-Whole', 'Whole-Half'
+
+            'Half-Whole',
+            'Whole-Half',
         },
         pattern=[
             RowNotes(
@@ -60,8 +74,13 @@ _pattern_source: dict[str, PatternType] = {
         name='Triplets',
         scale_types={
             'Major',
-            'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
-            'Dorian', 'Phrygian Dominant',
+
+            'Natural minor',
+            'Jazz melodic minor',
+            'Harmonic minor',
+
+            'Dorian',
+            'Phrygian Dominant',
         },
         pattern=[
             RowNotes(
@@ -76,8 +95,13 @@ _pattern_source: dict[str, PatternType] = {
         name='Run',
         scale_types={
             'Major',
-            'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
-            'Dorian', 'Phrygian Dominant',
+
+            'Natural minor',
+            'Jazz melodic minor',
+            'Harmonic minor',
+
+            'Dorian',
+            'Phrygian Dominant',
         },
         pattern=[
             RowNotes(
@@ -92,9 +116,16 @@ _pattern_source: dict[str, PatternType] = {
         name='In thirds',
         scale_types={
             'Major',
-            'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
-            'Dorian', 'Phrygian Dominant',
-            'Half-Whole', 'Whole-Half'
+
+            'Natural minor',
+            'Jazz melodic minor',
+            'Harmonic minor',
+
+            'Dorian',
+            'Phrygian Dominant',
+
+            'Half-Whole',
+            'Whole-Half',
         },
         pattern=[
             RowNotes(
@@ -109,8 +140,13 @@ _pattern_source: dict[str, PatternType] = {
         name='Skip a step',
         scale_types={
             'Major',
-            'Natural minor', 'Jazz melodic minor', 'Harmonic minor',
-            'Dorian', 'Phrygian Dominant',
+
+            'Natural minor',
+            'Jazz melodic minor',
+            'Harmonic minor',
+
+            'Dorian',
+            'Phrygian Dominant',
         },
         pattern=[
             RowNotes(
@@ -187,7 +223,7 @@ _pattern_source: dict[str, PatternType] = {
             ),
         ],
     ),
-#    'blues scale': [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
+    #  'blues scale': [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
 }
 
 
@@ -199,7 +235,7 @@ def create_pattern(pattern_name: str, scale_types: str, pattern: str) -> Pattern
     row_list = []
     for source_row in source_row_list:
         row = RowNotes(
-            quants=source_row.split(',')
+            quants=source_row.split(','),
         )
         row_list.append(row)
 

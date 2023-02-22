@@ -1,3 +1,5 @@
+"""This module create a PDF file with transposed pattern of lick in one scale."""
+
 import os
 from typing import List
 
@@ -80,8 +82,7 @@ section {
     margin: 5px;
 }
         """
-        html_code = """
-<!DOCTYPE html>
+        html_code = """<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -101,8 +102,7 @@ section {
         </div>
         <footer>©"Into all scales" created by Irina Eiduk, 2023</footer>
     </body>
-</html>
-""".format(
+</html>""".format(
             pattern=pattern_name,
             scale_group=scale_type_name,
             title=title,
@@ -111,23 +111,23 @@ section {
         )
 
         file_name = f"results/{scale_type_name.replace(' ', '_').lower()}_{pattern_name.replace(' ', '_').lower()}"
-        html_file = open(f"{file_name}.html", 'w+')
-        html_file.write(html_code)
-        html_file.close()
+
+        with open(f'{file_name}.html', 'w+') as html_file:
+            html_file.write(html_code)
 
         path = os.path.abspath(f'{file_name}.html')
         converter.convert(
             f'file:///{path}',
             f'{file_name}.pdf',
             print_options={
-                "marginTop": 0,
-                "marginRight": 0,
-                "marginBottom": 0,
-                "marginLeft": 0,
-                "landscape": True,
-                "paperWidth": 15,
-                "paperHeight": 17,
-            }
+                'marginTop': 0,
+                'marginRight': 0,
+                'marginBottom': 0,
+                'marginLeft': 0,
+                'landscape': True,
+                'paperWidth': 15,
+                'paperHeight': 17,
+            },
         )
 
         cnt += 1

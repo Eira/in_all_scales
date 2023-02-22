@@ -12,9 +12,12 @@ def _create_quant_html(quotes_list: str) -> str:
 
 def _create_row_html(pattern_row: TransRowNotes) -> str:
     """Create html with one row of the transposed pattern."""
-    quants_list_html = ''
+    quants_list_html_list = []
+    # todo сделать лист комп
     for quotes_list in pattern_row.quants:
-        quants_list_html += _create_quant_html(quotes_list)
+        quants_list_html_list.append(_create_quant_html(quotes_list))
+
+    quants_list_html = '\n'.join(quants_list_html_list)
 
     return f"""<p class="pattern">
         {quants_list_html}
@@ -24,9 +27,11 @@ def _create_row_html(pattern_row: TransRowNotes) -> str:
 
 def _create_key_html(pattern_in_key: PatternInKey) -> str:
     """Create html with transposed pattern in one key."""
-    pattern_row_list_html = ''
+    pattern_row_list_html_list = []
     for pattern_row in pattern_in_key.pattern:
-        pattern_row_list_html += _create_row_html(pattern_row)
+        pattern_row_list_html_list.append(_create_row_html(pattern_row))
+
+    pattern_row_list_html = '\n'.join(pattern_row_list_html_list)
 
     return f"""<section>
         <h3>{pattern_in_key.key_name}</h3>

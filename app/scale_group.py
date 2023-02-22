@@ -1,3 +1,9 @@
+"""
+This module contain descriptions of all scales.
+
+As well as functions for scale processing.
+"""
+
 from app.models import Key, ScaleFormula, ScaleGroup
 
 
@@ -18,16 +24,14 @@ def get_scale_formula(scale_name: str) -> ScaleFormula:
         'Half-Whole': [2, 1, 2, 1, 2, 1, 2],
         'Whole-Half': [1, 2, 1, 2, 1, 2, 1],
         'Chromatic': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-
     }.get(scale_name)
     if not source:
         raise RuntimeError
 
-    scale_formula = ScaleFormula(
+    return ScaleFormula(
         name=scale_name,
         formula=source,
     )
-    return scale_formula
 
 
 def get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
@@ -97,16 +101,14 @@ def get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
         )
         scales_list.append(formuled_key)
 
-    scale_group = ScaleGroup(
+    return ScaleGroup(
         name=scale_formula.name,
         scales=scales_list,
     )
-    return scale_group
 
 
 def get_scale_group_from_name(scale_name: str) -> ScaleGroup:
     """Create scale object from the name."""
     formula = get_scale_formula(scale_name)
-    scale_group = get_scales_group(formula)
 
-    return scale_group
+    return get_scales_group(formula)

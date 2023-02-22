@@ -1,3 +1,5 @@
+"""This is module with main runner of Into all scales."""
+
 import logging
 from typing import Optional, Set
 
@@ -32,9 +34,8 @@ def main(pattern_name: str, user_scale_group: Optional[Set[str]] = None) -> int:
     # создать списки паттернов
     transposed_pattern_list = transpose(pattern, user_scale_group)
     # генерируем файлы
-    cnt = transpose_output(transposed_pattern_list)
 
-    return cnt
+    return transpose_output(transposed_pattern_list)
 
 
 if __name__ == '__main__':
