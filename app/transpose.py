@@ -12,9 +12,8 @@ def _create_trans_quant(quant: str, key_scale: List[str]) -> str:
 
     for note in quant:
         trans_note_list.append(key_scale[int(note) - 1])
-    trans_quant = ' '.join(trans_note_list)
 
-    return trans_quant
+    return ' '.join(trans_note_list)
 
 
 def _create_trans_row(row: List[str], key_scale: List[str]) -> TransRowNotes:

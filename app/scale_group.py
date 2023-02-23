@@ -34,7 +34,7 @@ def _get_scale_formula(scale_name: str) -> ScaleFormula:
     )
 
 
-def get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
+def _get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
     """Take scale formula. Returns group of scales."""
     base_scales = [
         Key(
@@ -111,4 +111,4 @@ def get_scale_group_from_name(scale_name: str) -> ScaleGroup:
     """Create scale object from the name."""
     formula = _get_scale_formula(scale_name)
 
-    return get_scales_group(formula)
+    return _get_scales_group(formula)

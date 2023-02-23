@@ -1,6 +1,6 @@
 from app.models import Key, ScaleFormula, ScaleGroup
 from app.scale_group import (_get_scale_formula, get_scale_group_from_name,
-                             get_scales_group)
+                             _get_scales_group)
 
 
 def test_get_scale_formula():
@@ -19,7 +19,7 @@ def test_get_scales_group_happy_path():
         name='Major',
         formula=[2, 2, 1, 2, 2, 2, 1],
     )
-    res = get_scales_group(scale_formula)
+    res = _get_scales_group(scale_formula)
 
     assert res == ScaleGroup(
         name='Major',

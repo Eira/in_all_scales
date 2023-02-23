@@ -20,8 +20,8 @@ def transpose_output(transposed_pattern_list: List[PatternInScale]) -> int:
         transposed_pattern_html = create_transposed_pattern_html(pattern_in_scale)
 
         title = f'{scale_type_name}, {pattern_name}'
-        with open('../assets/page_template.html') as html_file:
-            html_code = html_file.read().format(
+        with open('../assets/page_template.html') as html_template:
+            html_code = html_template.read().format(
                 pattern=pattern_name,
                 scale_group=scale_type_name,
                 title=title,
