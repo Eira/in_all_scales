@@ -8,10 +8,13 @@ from app.scale_group import get_scale_group_from_name
 
 def _create_trans_quant(quant: str, key_scale: List[str]) -> str:
     """Transpose the quant in scale row to letters notes."""
-    trans_note_list = ''
+    trans_note_list = []
+
     for note in quant:
-        trans_note_list.join(f'{key_scale[int(note) - 1]} ')
-    return trans_note_list.strip()
+        trans_note_list.append(key_scale[int(note) - 1])
+    trans_quant = ' '.join(trans_note_list)
+
+    return trans_quant
 
 
 def _create_trans_row(row: List[str], key_scale: List[str]) -> TransRowNotes:

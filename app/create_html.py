@@ -6,7 +6,7 @@ from app.models import PatternInKey, PatternInScale, TransRowNotes
 def _create_quant_html(quotes_list: str) -> str:
     """Create html with one quant of the row in transposed pattern."""
 
-    return f'<span class="scale_quant">{quotes_list}</span>'
+    return f'<span class="scale_quant">{quotes_list}</span>\t'
 
 
 def _create_row_html(pattern_row: TransRowNotes) -> str:
