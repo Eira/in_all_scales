@@ -2,7 +2,7 @@
 
 from typing import List, Optional, Set
 
-from app.models import PatternInKey, PatternInScale, PatternType, RowNotes, TransRowNotes
+from app.models import PatternInKey, PatternInScale, PatternType, RowNotes, ScaleGroup, TransRowNotes
 from app.scale_group import get_scale_group_from_name
 
 
@@ -41,6 +41,22 @@ def _create_trans_row_list(pattern_rows: List[RowNotes], key_scale: List[str]) -
     return trans_row_list
 
 
+def _create_trans_key_list(scale_group: ScaleGroup, pattern: PatternType) -> List[PatternInKey]:
+    """Gather lists of keys with transposed patter."""
+    patterned_key_list = []
+
+    for key_scale in scale_group.scales:
+        trans_row_list = _create_trans_row_list(pattern.pattern, key_scale.scale)
+
+        patterned_key = PatternInKey(
+            key_name=key_scale.name,
+            pattern=trans_row_list,
+        )
+        patterned_key_list.append(patterned_key)
+
+    return patterned_key_list
+
+
 def transpose(pattern: PatternType, user_scale_group: Optional[Set[str]] = None) -> List[PatternInScale]:
     """
     Transpose pattern all possible scales or to selected one.
@@ -61,21 +77,12 @@ def transpose(pattern: PatternType, user_scale_group: Optional[Set[str]] = None)
     for scale_type in scale_type_list:
         scale_group = get_scale_group_from_name(scale_type)
 
-        patterned_key_list = []
-        for key_scale in scale_group.scales:
-            trans_row_list = _create_trans_row_list(pattern.pattern, key_scale.scale)
-
-            patterned_key = PatternInKey(
-                key_name=key_scale.name,
-                pattern=trans_row_list,
-            )
-            patterned_key_list.append(patterned_key)
-
         transposed_pattern = PatternInScale(
             scale_type_name=scale_group.name,
             pattern_name=pattern.name,
-            scales=patterned_key_list,
+            scales=_create_trans_key_list(scale_group, pattern),
         )
 
         transposed_pattern_list.append(transposed_pattern)
+
     return transposed_pattern_list
