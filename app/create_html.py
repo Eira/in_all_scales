@@ -1,6 +1,6 @@
 """This module create HTML code with transposed patterns of licks."""
 
-from app.models import PatternInKey, PatternInScale, TransRowNotes
+from app.models.models_pattern import PatternInKey, PatternInScale, TransRowNotes
 
 
 def _create_quant_html(quotes_list: str) -> str:

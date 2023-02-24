@@ -2,7 +2,8 @@
 
 from typing import List, Optional, Set
 
-from app.models import PatternInKey, PatternInScale, PatternType, RowNotes, ScaleGroup, TransRowNotes
+from app.models.models_pattern import PatternInKey, PatternInScale, PatternType, RowNotes, TransRowNotes
+from app.models.models_scale import ScaleGroup
 from app.scale_group import get_scale_group_from_name
 
 

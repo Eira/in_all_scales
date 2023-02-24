@@ -1,4 +1,4 @@
-from app.models import Key, ScaleFormula, ScaleGroup
+from app.models.models_scale import Key, ScaleFormula, ScaleGroup
 from app.scale_group import (_get_scale_formula, get_scale_group_from_name,
                              _get_scales_group, _get_formuled_scale)
 

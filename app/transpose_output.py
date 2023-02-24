@@ -6,7 +6,7 @@ from typing import List
 from pyhtml2pdf import converter  # type: ignore
 
 from app.create_html import create_transposed_pattern_html
-from app.models import PatternInScale
+from app.models.models_pattern import PatternInScale
 
 
 def transpose_output(transposed_pattern_list: List[PatternInScale]) -> int:

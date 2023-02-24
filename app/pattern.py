@@ -4,7 +4,7 @@ This module contain descriptions of all patterns and licks.
 And also functions for creating and getting patterns.
 """
 
-from app.models import Lick, Pattern, PatternType, RowNotes
+from app.models.models_pattern import Lick, Pattern, PatternType, RowNotes
 
 _pattern_source: dict[str, PatternType] = {
     'test scale': Pattern(

@@ -1,4 +1,4 @@
-from app.models import Pattern, RowNotes
+from app.models.models_pattern import Pattern, RowNotes
 from app.pattern import create_pattern, get_pattern
 
 
