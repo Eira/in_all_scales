@@ -1,6 +1,6 @@
 from app.models import Key, ScaleFormula, ScaleGroup
 from app.scale_group import (_get_scale_formula, get_scale_group_from_name,
-                             _get_scales_group)
+                             _get_scales_group, _get_formuled_scale)
 
 
 def test_get_scale_formula():
@@ -12,6 +12,21 @@ def test_get_scale_formula():
         name='Natural minor',
         formula=[2, 1, 2, 2, 1, 2, 2],
     )
+
+
+def test_get_formuled_scale():
+    key = Key(
+        name='C',
+        scale=['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C'],
+    )
+    scale_formula = ScaleFormula(
+        name='Major',
+        formula=[2, 2, 1, 2, 2, 2, 1],
+    )
+
+    res = _get_formuled_scale(key, scale_formula)
+
+    assert res == ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C']
 
 
 def test_get_scales_group_happy_path():

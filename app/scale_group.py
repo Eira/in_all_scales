@@ -3,6 +3,7 @@ This module contain descriptions of all scales.
 
 As well as functions for scale processing.
 """
+from typing import List
 
 from app.models import Key, ScaleFormula, ScaleGroup
 
@@ -32,6 +33,16 @@ def _get_scale_formula(scale_name: str) -> ScaleFormula:
         name=scale_name,
         formula=source,
     )
+
+
+def _get_formuled_scale(key: Key, scale_formula: ScaleFormula) -> List[str]:
+    step = 0
+    formuled_scale = [key.scale[0]]
+    for num in scale_formula.formula:
+        step += num
+        formuled_scale.append(key.scale[step])
+
+    return formuled_scale
 
 
 def _get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
@@ -89,15 +100,9 @@ def _get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
 
     scales_list = []
     for key in base_scales:
-        step = 0
-        formuled_scale = [key.scale[0]]
-        for num in scale_formula.formula:
-            step += num
-            formuled_scale.append(key.scale[step])
-
         formuled_key = Key(
             name=key.name,
-            scale=formuled_scale,
+            scale=_get_formuled_scale(key, scale_formula),
         )
         scales_list.append(formuled_key)
 
