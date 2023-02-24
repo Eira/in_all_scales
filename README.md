@@ -15,3 +15,10 @@ $ poetry install
 ```shell
 $ python -m pytest
 ```
+
+### Local run linters
+```
+poetry run flake8 app/
+
+poetry run mypy app/
+```
