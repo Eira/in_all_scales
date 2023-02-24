@@ -7,6 +7,7 @@ from pyhtml2pdf import converter  # type: ignore
 
 from app.create_html import create_transposed_pattern_html
 from app.models.models_pattern import PatternInScale
+from app.settings import RESULTS_PATH, HTML_TEMPLATE_PATH, CSS_PATH
 
 
 def _get_html_pattern(pattern_in_scale: PatternInScale) -> str:
@@ -16,12 +17,16 @@ def _get_html_pattern(pattern_in_scale: PatternInScale) -> str:
 
     transposed_pattern_html = create_transposed_pattern_html(pattern_in_scale)
 
-    with open('../assets/page_template.html') as html_template:
+    with open(CSS_PATH) as css_file:
+        css = css_file.read()
+
+    with open(HTML_TEMPLATE_PATH) as html_template:
         html_code = html_template.read().format(
             pattern=pattern_name,
             scale_group=scale_type_name,
             title=f'{scale_type_name}, {pattern_name}',
             data=transposed_pattern_html,
+            style=css,
         )
 
     return html_code
@@ -35,11 +40,11 @@ def _create_file_name(pattern_in_scale: PatternInScale) -> str:
     scale_type_name_norm = scale_type_name.replace(' ', '_').lower()
     pattern_name_norm = pattern_name.replace(' ', '_').lower()
 
-    return f'results/{scale_type_name_norm}_{pattern_name_norm}'
+    return f'{RESULTS_PATH}/{scale_type_name_norm}_{pattern_name_norm}'
 
 
 def transpose_output(transposed_pattern_list: List[PatternInScale]) -> int:
-    """Create group of HTML files with transposed pattern."""
+    """Create group of PDF files with transposed pattern."""
     # todo test
     cnt = 0
     for pattern_in_scale in transposed_pattern_list:
@@ -47,6 +52,8 @@ def transpose_output(transposed_pattern_list: List[PatternInScale]) -> int:
 
         with open(f'{file_name}.html', 'w+') as html_file:
             html_file.write(_get_html_pattern(pattern_in_scale))
+
+        # todo скопировать файл из ассетов в результаты?
 
         path = os.path.abspath(f'{file_name}.html')
         converter.convert(

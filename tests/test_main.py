@@ -1,3 +1,5 @@
+import pytest
+
 from app.main import main
 
 
@@ -10,9 +12,7 @@ def test_main_happy_path():
 
 
 def test_main_wrong_pattern():
-    pattern_name = 'test scale'
+    pattern_name = 'wrong pattern'
 
-    res = main(pattern_name)
-
-    assert res == 0
-    # todo надо как то нормально написать про вывод ошибки
+    with pytest.raises(RuntimeError, match='There no such a pattern or lick in program.'):
+        main(pattern_name)

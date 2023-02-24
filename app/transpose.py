@@ -19,12 +19,7 @@ def _create_trans_quant(quant: str, key_scale: List[str]) -> str:
 
 def _create_trans_row(row: List[str], key_scale: List[str]) -> TransRowNotes:
     """Gather transposed quants to the row."""
-    trans_quant_list = []
-
-    for quant in row:
-        trans_note_list = _create_trans_quant(quant, key_scale)
-
-        trans_quant_list.append(trans_note_list)
+    trans_quant_list = [_create_trans_quant(quant, key_scale) for quant in row]
 
     return TransRowNotes(
         quants=trans_quant_list,
@@ -33,13 +28,7 @@ def _create_trans_row(row: List[str], key_scale: List[str]) -> TransRowNotes:
 
 def _create_trans_row_list(pattern_rows: List[RowNotes], key_scale: List[str]) -> List[TransRowNotes]:
     """Gather transposed rows to lists."""
-    trans_row_list = []
-
-    for row in pattern_rows:
-        trans_row = _create_trans_row(row.quants, key_scale)
-        trans_row_list.append(trans_row)
-
-    return trans_row_list
+    return [_create_trans_row(row.quants, key_scale) for row in pattern_rows]
 
 
 def _create_trans_key_list(scale_group: ScaleGroup, pattern: PatternType) -> List[PatternInKey]:

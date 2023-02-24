@@ -250,6 +250,7 @@ def get_pattern(pattern_name: str) -> PatternType:
     """Take from the user pattern name. Return object with name and pattern sequence."""
     pattern = _pattern_source.get(pattern_name)
     if not pattern:
-        raise RuntimeError
+        raise RuntimeError('There no such a pattern or lick in program.')
+    # todo проверить поведение функции
 
     return pattern
