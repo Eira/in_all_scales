@@ -1,3 +1,5 @@
+"""Application settings."""
+
 import os
 
 RESULTS_PATH = os.path.abspath(
@@ -5,9 +7,9 @@ RESULTS_PATH = os.path.abspath(
 )
 
 HTML_TEMPLATE_PATH = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), '..', 'assets/page_template.html')
+    os.path.join(os.path.dirname(__file__), '..', 'assets/page_template.html'),
 )
 
 CSS_PATH = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), '..', 'assets/style.css')
+    os.path.join(os.path.dirname(__file__), '..', 'assets/style.css'),
 )

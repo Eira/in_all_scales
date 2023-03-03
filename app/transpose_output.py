@@ -7,36 +7,31 @@ from pyhtml2pdf import converter  # type: ignore
 
 from app.create_html import create_transposed_pattern_html
 from app.models.models_pattern import PatternInScale
-from app.settings import RESULTS_PATH, HTML_TEMPLATE_PATH, CSS_PATH
+from app.settings import CSS_PATH, HTML_TEMPLATE_PATH, RESULTS_PATH
 
 
 def _get_html_pattern(pattern_in_scale: PatternInScale) -> str:
     """Get html pattern from the file. Return html with exact pattern in scale."""
-    scale_type_name = pattern_in_scale.scale_type_name
-    pattern_name = pattern_in_scale.pattern_name
-
-    transposed_pattern_html = create_transposed_pattern_html(pattern_in_scale)
-
     with open(CSS_PATH) as css_file:
         css = css_file.read()
 
     with open(HTML_TEMPLATE_PATH) as html_template:
         html_code = html_template.read().format(
-            pattern=pattern_name,
-            scale_group=scale_type_name,
-            title=f'{scale_type_name}, {pattern_name}',
-            data=transposed_pattern_html,
+            pattern=pattern_in_scale.scale_type_name,
+            scale_group=pattern_in_scale.pattern_name,
+            title='{0}, {1}'.format(
+                pattern_in_scale.scale_type_name,
+                pattern_in_scale.pattern_name,
+            ),
+            data=create_transposed_pattern_html(pattern_in_scale),
             style=css,
         )
 
     return html_code
 
 
-def _create_file_name(pattern_in_scale: PatternInScale) -> str:
+def _create_file_name(scale_type_name: str, pattern_name: str) -> str:
     """Generate file name for transposed pattern file."""
-    scale_type_name = pattern_in_scale.scale_type_name
-    pattern_name = pattern_in_scale.pattern_name
-
     scale_type_name_norm = scale_type_name.replace(' ', '_').lower()
     pattern_name_norm = pattern_name.replace(' ', '_').lower()
 
@@ -48,7 +43,7 @@ def transpose_output(transposed_pattern_list: List[PatternInScale]) -> int:
     # todo test
     cnt = 0
     for pattern_in_scale in transposed_pattern_list:
-        file_name = _create_file_name(pattern_in_scale)
+        file_name = _create_file_name(pattern_in_scale.scale_type_name, pattern_in_scale.pattern_name)
 
         with open(f'{file_name}.html', 'w+') as html_file:
             html_file.write(_get_html_pattern(pattern_in_scale))
