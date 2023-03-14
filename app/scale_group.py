@@ -8,73 +8,73 @@ from typing import List
 from app.models.models_scale import Key, ScaleFormula, ScaleGroup
 
 _scales_formulas_source = {
-        'Major': [2, 2, 1, 2, 2, 2, 1],
-        'Natural minor': [2, 1, 2, 2, 1, 2, 2],
-        'Jazz melodic minor': [2, 1, 2, 2, 2, 2, 1],
-        'Harmonic minor': [2, 1, 2, 2, 1, 3, 1],
-        'Dorian': [2, 1, 2, 2, 2, 1, 2],
-        'Phrygian Dominant': [1, 3, 1, 2, 1, 2, 2],
-        'Blues major': [2, 1, 1, 3, 2, 3],
-        'Blues minor': [3, 2, 1, 1, 3, 2],
-        'Pentatonic major': [2, 2, 1, 2, 2, 2, 1],
-        'Pentatonic minor': [2, 1, 2, 2, 1, 2, 2],
-        'Whole-Tone': [2, 2, 2, 2, 2, 2],
-        'Half-Whole': [2, 1, 2, 1, 2, 1, 2],
-        'Whole-Half': [1, 2, 1, 2, 1, 2, 1],
-        'Chromatic': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    }
+    'Major': [2, 2, 1, 2, 2, 2, 1],
+    'Natural minor': [2, 1, 2, 2, 1, 2, 2],
+    'Jazz melodic minor': [2, 1, 2, 2, 2, 2, 1],
+    'Harmonic minor': [2, 1, 2, 2, 1, 3, 1],
+    'Dorian': [2, 1, 2, 2, 2, 1, 2],
+    'Phrygian Dominant': [1, 3, 1, 2, 1, 2, 2],
+    'Blues major': [2, 1, 1, 3, 2, 3],
+    'Blues minor': [3, 2, 1, 1, 3, 2],
+    'Pentatonic major': [2, 2, 1, 2, 2, 2, 1],
+    'Pentatonic minor': [2, 1, 2, 2, 1, 2, 2],
+    'Whole-Tone': [2, 2, 2, 2, 2, 2],
+    'Half-Whole': [2, 1, 2, 1, 2, 1, 2],
+    'Whole-Half': [1, 2, 1, 2, 1, 2, 1],
+    'Chromatic': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+}
 
 
 _base_scales_source = [
-        Key(
-            name='C',
-            scale=['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C'],
-        ),
-        Key(
-            name='Db',
-            scale=['Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db'],
-        ),
-        Key(
-            name='D',
-            scale=['D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D'],
-        ),
-        Key(
-            name='Eb',
-            scale=['Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb'],
-        ),
-        Key(
-            name='E',
-            scale=['E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E'],
-        ),
-        Key(
-            name='F',
-            scale=['F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F'],
-        ),
-        Key(
-            name='Gb',
-            scale=['Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb'],
-        ),
-        Key(
-            name='G',
-            scale=['G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G'],
-        ),
-        Key(
-            name='Ab',
-            scale=['Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab'],
-        ),
-        Key(
-            name='A',
-            scale=['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A'],
-        ),
-        Key(
-            name='Bb',
-            scale=['Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb'],
-        ),
-        Key(
-            name='B',
-            scale=['B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'],
-        ),
-    ]
+    Key(
+        name='C',
+        scale=['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C'],
+    ),
+    Key(
+        name='Db',
+        scale=['Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db'],
+    ),
+    Key(
+        name='D',
+        scale=['D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D'],
+    ),
+    Key(
+        name='Eb',
+        scale=['Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb'],
+    ),
+    Key(
+        name='E',
+        scale=['E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E'],
+    ),
+    Key(
+        name='F',
+        scale=['F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F'],
+    ),
+    Key(
+        name='Gb',
+        scale=['Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb'],
+    ),
+    Key(
+        name='G',
+        scale=['G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G'],
+    ),
+    Key(
+        name='Ab',
+        scale=['Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab'],
+    ),
+    Key(
+        name='A',
+        scale=['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A'],
+    ),
+    Key(
+        name='Bb',
+        scale=['Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb'],
+    ),
+    Key(
+        name='B',
+        scale=['B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'],
+    ),
+]
 
 
 def _get_scale_formula(scale_name: str) -> ScaleFormula:
@@ -102,8 +102,6 @@ def _get_formuled_scale(key: Key, scale_formula: ScaleFormula) -> List[str]:
 
 def _get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
     """Take scale formula. Returns group of scales."""
-
-
     scales_list = [
         Key(
             name=key.name,
