@@ -22,11 +22,6 @@ jobs:
         poetry --version
         poetry install
 
-    - uses: shogo82148/actions-setup-redis@v1
-      with:
-        redis-version: 'latest'
-    - run: redis-cli ping
-
     - name: Run tests
       run: |
         poetry run pytest --cov app --cov-report=xml
