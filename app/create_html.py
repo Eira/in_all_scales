@@ -10,11 +10,7 @@ def _create_quant_html(quotes_list: str) -> str:
 
 def _create_row_html(pattern_row: TransRowNotes) -> str:
     """Create html with one row of the transposed pattern."""
-    quants_list_html_list = []
-    # todo сделать лист комп
-    for quotes_list in pattern_row.quants:
-        quants_list_html_list.append(_create_quant_html(quotes_list))
-
+    quants_list_html_list = [_create_quant_html(quotes_list) for quotes_list in pattern_row.quants]
     quants_list_html = '\n'.join(quants_list_html_list)
 
     return f"""<p class="pattern">

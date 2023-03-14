@@ -2,7 +2,7 @@ from app.models.models_pattern import PatternInScale, PatternInKey, TransRowNote
 from app.transpose_output import transpose_output, _get_html_pattern, _create_file_name
 
 
-def test_get_html_pattern_smoke():
+def test_get_html_pattern_smoke(fixture_text_pattern_in_pattern_source):
     pattern_in_scale = PatternInScale(scale_type_name='test scale', pattern_name='test pattern', scales=[PatternInKey(key_name='C', pattern=[TransRowNotes(quants=['Ab B C', 'Ab B C', 'Ab B C']), TransRowNotes(quants=['Ab B C', 'Ab B C', 'Ab B C'])]), PatternInKey(key_name='C', pattern=[TransRowNotes(quants=['Ab B C', 'Ab B C', 'Ab B C']), TransRowNotes(quants=['Ab B C', 'Ab B C', 'Ab B C'])])])
 
     res = _get_html_pattern(pattern_in_scale)
@@ -11,12 +11,12 @@ def test_get_html_pattern_smoke():
 
 
 def test_create_file_name():
-    pattern_in_scale = PatternInScale(scale_type_name='test scale', pattern_name='test pattern', scales=[PatternInKey(key_name='C', pattern=[TransRowNotes(quants=['Ab B C', 'Ab B C', 'Ab B C']), TransRowNotes(quants=['Ab B C', 'Ab B C', 'Ab B C'])]), PatternInKey(key_name='C', pattern=[TransRowNotes(quants=['Ab B C', 'Ab B C', 'Ab B C']), TransRowNotes(quants=['Ab B C', 'Ab B C', 'Ab B C'])])])
+    scale_type_name = 'test_scale'
+    pattern_name = 'test_pattern'
 
-    res = _create_file_name(pattern_in_scale)
+    res = _create_file_name(scale_type_name, pattern_name)
 
-    assert res
-    # todo проверять только конец строки
+    assert res.endswith('into_all_scales/results/test_scale_test_pattern')
 
 
 def test_transpose_output_smoke(fixture_pattern_in_scale):

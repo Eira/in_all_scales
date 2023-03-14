@@ -21,13 +21,7 @@ def main(pattern_name: str, user_scale_group: Optional[Set[str]] = None) -> int:
     # подготовить данные для паттерна
     pattern = get_pattern(pattern_name)
     #  todo написать сюда трай кеч
-    #  Todo предложить создать
     #  todo test
-    if user_scale_group not in pattern.scale_types:
-        # todo тут какая то ерудна
-        logging.warning('This scale is not applicable for this pattern or lick.')
-        # Todo предложить выбрать из возможных
-        # todo test
 
     # создать списки паттернов
     transposed_pattern_list = transpose(pattern, user_scale_group)

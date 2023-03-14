@@ -2,12 +2,13 @@ from typing import List
 
 import pytest
 
-from app.models.models_pattern import Pattern, RowNotes, TransRowNotes, PatternInKey, PatternInScale
+from app.models.models_pattern import Pattern, RowNotes, TransRowNotes, PatternInKey, PatternInScale, PatternType
+from app import pattern
 
 
 @pytest.fixture()
 def fixture_test_pattern() -> Pattern:
-    pattern = Pattern(
+    yield Pattern(
         name='Triplets',
         scale_types=['Major', 'Natural minor'],
         pattern=[
@@ -19,8 +20,6 @@ def fixture_test_pattern() -> Pattern:
             ),
         ],
     )
-
-    yield pattern
 
 
 @pytest.fixture()
@@ -59,3 +58,22 @@ def fixture_pattern_in_scale(fixture_pattern_in_key) -> PatternInScale:
     )
 
     yield pattern_in_scale
+
+
+@pytest.fixture()
+def fixture_text_pattern_in_pattern_source() -> dict[str, PatternType]:
+    pattern._pattern_source['test scale'] = Pattern(
+        name='test scale',
+        scale_types={'scale 1', 'scale 2'},
+        pattern=[
+            RowNotes(
+                quants=['123', '24', '5'],
+            ),
+            RowNotes(
+                quants=['5', '42', '321'],
+            ),
+        ],
+    )
+    yield
+
+    del pattern._pattern_source['test scale']

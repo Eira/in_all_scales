@@ -48,8 +48,6 @@ def transpose_output(transposed_pattern_list: List[PatternInScale]) -> int:
         with open(f'{file_name}.html', 'w+') as html_file:
             html_file.write(_get_html_pattern(pattern_in_scale))
 
-        # todo скопировать файл из ассетов в результаты?
-
         path = os.path.abspath(f'{file_name}.html')
         converter.convert(
             f'file:///{path}',

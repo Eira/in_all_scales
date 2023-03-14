@@ -7,10 +7,7 @@ from typing import List
 
 from app.models.models_scale import Key, ScaleFormula, ScaleGroup
 
-
-def _get_scale_formula(scale_name: str) -> ScaleFormula:
-    """Take from the user scale name. Return object with name and scale formula sequence."""
-    source = {
+_scales_formulas_source = {
         'Major': [2, 2, 1, 2, 2, 2, 1],
         'Natural minor': [2, 1, 2, 2, 1, 2, 2],
         'Jazz melodic minor': [2, 1, 2, 2, 2, 2, 1],
@@ -25,30 +22,10 @@ def _get_scale_formula(scale_name: str) -> ScaleFormula:
         'Half-Whole': [2, 1, 2, 1, 2, 1, 2],
         'Whole-Half': [1, 2, 1, 2, 1, 2, 1],
         'Chromatic': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    }.get(scale_name)
-    if not source:
-        raise RuntimeError
-
-    return ScaleFormula(
-        name=scale_name,
-        formula=source,
-    )
+    }
 
 
-def _get_formuled_scale(key: Key, scale_formula: ScaleFormula) -> List[str]:
-    """Apply scale formula to the chromatic scale. Returns selected scale notes list."""
-    step = 0
-    formuled_scale = [key.scale[0]]
-    for num in scale_formula.formula:
-        step += num
-        formuled_scale.append(key.scale[step])
-
-    return formuled_scale
-
-
-def _get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
-    """Take scale formula. Returns group of scales."""
-    base_scales = [
+_base_scales_source = [
         Key(
             name='C',
             scale=['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C'],
@@ -99,13 +76,41 @@ def _get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
         ),
     ]
 
-    scales_list = []
-    for key in base_scales:
-        formuled_key = Key(
+
+def _get_scale_formula(scale_name: str) -> ScaleFormula:
+    """Take from the user scale name. Return object with name and scale formula sequence."""
+    formula = _scales_formulas_source.get(scale_name)
+    if not formula:
+        raise RuntimeError
+
+    return ScaleFormula(
+        name=scale_name,
+        formula=formula,
+    )
+
+
+def _get_formuled_scale(key: Key, scale_formula: ScaleFormula) -> List[str]:
+    """Apply scale formula to the chromatic scale. Returns selected scale notes list."""
+    step = 0
+    formuled_scale = [key.scale[0]]
+    for num in scale_formula.formula:
+        step += num
+        formuled_scale.append(key.scale[step])
+
+    return formuled_scale
+
+
+def _get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
+    """Take scale formula. Returns group of scales."""
+
+
+    scales_list = [
+        Key(
             name=key.name,
             scale=_get_formuled_scale(key, scale_formula),
         )
-        scales_list.append(formuled_key)
+        for key in _base_scales_source
+    ]
 
     return ScaleGroup(
         name=scale_formula.name,

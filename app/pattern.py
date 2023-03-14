@@ -7,18 +7,6 @@ And also functions for creating and getting patterns.
 from app.models.models_pattern import Lick, Pattern, PatternType, RowNotes
 
 _pattern_source: dict[str, PatternType] = {
-    'test scale': Pattern(
-        name='test scale',
-        scale_types={'scale 1', 'scale 2'},
-        pattern=[
-            RowNotes(
-                quants=['123', '24', '5'],
-            ),
-            RowNotes(
-                quants=['5', '42', '321'],
-            ),
-        ],
-    ),
     'Up and down': Pattern(
         name='Up and down',
         scale_types={
@@ -225,25 +213,6 @@ _pattern_source: dict[str, PatternType] = {
     ),
     #  'blues scale': [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
 }
-
-
-# todo вероятно пригодится переписать еще для lick
-def create_pattern(pattern_name: str, scale_types: str, pattern: str) -> Pattern:
-    """Create pattern object from users data."""
-    scale_types_list = set(scale_types.strip().split(','))
-    source_row_list = pattern.strip().split(' ')
-    row_list = []
-    for source_row in source_row_list:
-        row = RowNotes(
-            quants=source_row.split(','),
-        )
-        row_list.append(row)
-
-    return Pattern(
-        name=pattern_name,
-        scale_types=scale_types_list,
-        pattern=row_list,
-    )
 
 
 def get_pattern(pattern_name: str) -> PatternType:
