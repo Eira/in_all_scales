@@ -47,7 +47,7 @@ def _create_trans_key_list(scale_group: ScaleGroup, pattern: PatternType) -> Lis
     return patterned_key_list
 
 
-def transpose(pattern: PatternType, user_scale_group: Optional[Set[str]] = None) -> List[PatternInScale]:
+def transpose(pattern: PatternType, user_scale_group: set[str] | None = None) -> List[PatternInScale]:
     """
     Transpose pattern all possible scales or to selected one.
 

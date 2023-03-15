@@ -1,5 +1,4 @@
-from app.create_html import (_create_key_html, _create_quant_html,
-                             _create_row_html, create_transposed_pattern_html)
+from app.create_html import _create_key_html, _create_quant_html, _create_row_html, create_transposed_pattern_html
 
 
 def test_create_quant_html_happy_path(fixture_trans_quant_notes):

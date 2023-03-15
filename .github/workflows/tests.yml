@@ -24,7 +24,7 @@ jobs:
 
     - name: Run tests
       run: |
-        poetry run pytest --cov app --cov-report=xml
+        python -m pytest --cov=app --cov-report=xml
 
     - name: Codecov
       uses: codecov/codecov-action@v3.1.1

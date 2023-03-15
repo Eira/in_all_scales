@@ -1,9 +1,7 @@
-from typing import List
-
 import pytest
 
-from app.models.models_pattern import Pattern, RowNotes, TransRowNotes, PatternInKey, PatternInScale, PatternType
 from app import pattern
+from app.models.models_pattern import Pattern, PatternInKey, PatternInScale, PatternType, RowNotes, TransRowNotes
 
 
 @pytest.fixture()
@@ -23,7 +21,7 @@ def fixture_test_pattern() -> Pattern:
 
 
 @pytest.fixture()
-def fixture_trans_quant_notes() -> List[str]:
+def fixture_trans_quant_notes() -> str:
     """Group of notes, that should be shown together, like one bar."""
     trans_quant_notes = 'Ab B C'
 
@@ -64,7 +62,7 @@ def fixture_pattern_in_scale(fixture_pattern_in_key) -> PatternInScale:
 def fixture_text_pattern_in_pattern_source() -> dict[str, PatternType]:
     pattern._pattern_source['test scale'] = Pattern(
         name='test scale',
-        scale_types={'scale 1', 'scale 2'},
+        scale_types=['scale 1', 'scale 2'],
         pattern=[
             RowNotes(
                 quants=['123', '24', '5'],

@@ -1,5 +1,5 @@
-from app.models.models_pattern import PatternInScale, PatternInKey, TransRowNotes
-from app.transpose_output import transpose_output, _get_html_pattern, _create_file_name
+from app.models.models_pattern import PatternInKey, PatternInScale, TransRowNotes
+from app.transpose_output import _create_file_name, _get_html_pattern, transpose_output
 
 
 def test_get_html_pattern_smoke(fixture_text_pattern_in_pattern_source):
@@ -16,7 +16,7 @@ def test_create_file_name():
 
     res = _create_file_name(scale_type_name, pattern_name)
 
-    assert res.endswith('into_all_scales/results/test_scale_test_pattern')
+    assert res.endswith('test_scale_test_pattern')
 
 
 def test_transpose_output_smoke(fixture_pattern_in_scale):

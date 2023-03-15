@@ -1,14 +1,14 @@
 """Datatypes connected with patterns anf licks."""
 
 from dataclasses import dataclass
-from typing import List, Set
+from typing import Iterable
 
 
 @dataclass
 class RowNotes:
     """Groups of notes, gathered in a rows."""
 
-    quants: List[str]
+    quants: list[str]
 
 
 @dataclass
@@ -16,8 +16,8 @@ class PatternType:
     """Base structure for patterns and licks."""
 
     name: str
-    scale_types: Set[str]
-    pattern: List[RowNotes]
+    scale_types: Iterable[str]
+    pattern: list[RowNotes]
 
 
 @dataclass
@@ -34,7 +34,7 @@ class Lick(PatternType):
 class TransRowNotes:
     """Groups of notes, gathered in a rows."""
 
-    quants: List[str]
+    quants: list[str]
 
 
 @dataclass
@@ -42,7 +42,7 @@ class PatternInKey:
     """Pattern with transposed notes in one key."""
 
     key_name: str
-    pattern: List[TransRowNotes]
+    pattern: list[TransRowNotes]
 
 
 @dataclass
@@ -51,4 +51,4 @@ class PatternInScale:
 
     scale_type_name: str
     pattern_name: str
-    scales: List[PatternInKey]
+    scales: list[PatternInKey]
