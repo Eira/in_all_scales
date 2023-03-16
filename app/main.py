@@ -1,14 +1,13 @@
 """This is module with main runner of Into all scales."""
 
 import logging
-from typing import Optional, Set
 
 from app.pattern import get_pattern
 from app.transpose import transpose
 from app.transpose_output import transpose_output
 
 
-def main(pattern_name: str, user_scale_group: Optional[Set[str]] = None) -> int:
+def main(pattern_name: str, user_scale_group: set[str] | None = None) -> int:
     """
     Do the main runner of "Into all scales" project.
 

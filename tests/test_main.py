@@ -4,11 +4,11 @@ from app.main import main
 
 
 def test_main_happy_path():
-    pattern_name = 'Up and down'
+    pattern_name = 'Minor Pentatonic Up and down'
 
     res = main(pattern_name)
 
-    assert res == 9
+    assert res == 1
 
 
 def test_main_wrong_pattern():

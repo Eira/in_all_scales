@@ -2,14 +2,16 @@
 
 import os
 
+path_root = os.path.dirname(__file__)
+
 RESULTS_PATH = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), '..', 'results'),
+    os.path.join(path_root, '..', 'results'),
 )
 
 HTML_TEMPLATE_PATH = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), '..', 'assets/page_template.html'),
+    os.path.join(path_root, '..', 'assets', 'page_template.html'),
 )
 
 CSS_PATH = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), '..', 'assets/style.css'),
+    os.path.join(path_root, '..', 'assets', 'style.css'),
 )

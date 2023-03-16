@@ -3,7 +3,6 @@ This module contain descriptions of all scales.
 
 As well as functions for scale processing.
 """
-from typing import List
 
 from app.models.models_scale import Key, ScaleFormula, ScaleGroup
 
@@ -77,6 +76,13 @@ _base_scales_source = [
 ]
 
 
+def get_scale_group_from_name(scale_name: str) -> ScaleGroup:
+    """Create scale object from the name."""
+    formula = _get_scale_formula(scale_name)
+
+    return _get_scales_group(formula)
+
+
 def _get_scale_formula(scale_name: str) -> ScaleFormula:
     """Take from the user scale name. Return object with name and scale formula sequence."""
     formula = _scales_formulas_source.get(scale_name)
@@ -89,7 +95,7 @@ def _get_scale_formula(scale_name: str) -> ScaleFormula:
     )
 
 
-def _get_formuled_scale(key: Key, scale_formula: ScaleFormula) -> List[str]:
+def _get_formuled_scale(key: Key, scale_formula: ScaleFormula) -> list[str]:
     """Apply scale formula to the chromatic scale. Returns selected scale notes list."""
     step = 0
     formuled_scale = [key.scale[0]]
@@ -114,10 +120,3 @@ def _get_scales_group(scale_formula: ScaleFormula) -> ScaleGroup:
         name=scale_formula.name,
         scales=scales_list,
     )
-
-
-def get_scale_group_from_name(scale_name: str) -> ScaleGroup:
-    """Create scale object from the name."""
-    formula = _get_scale_formula(scale_name)
-
-    return _get_scales_group(formula)

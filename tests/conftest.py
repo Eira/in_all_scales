@@ -8,7 +8,7 @@ from app.models.models_pattern import Pattern, PatternInKey, PatternInScale, Pat
 def fixture_test_pattern() -> Pattern:
     yield Pattern(
         name='Triplets',
-        scale_types=['Major', 'Natural minor'],
+        scale_types={'Major', 'Natural minor'},
         pattern=[
             RowNotes(
                 quants=['123', '234', '345', '456', '567', '678'],
@@ -59,10 +59,10 @@ def fixture_pattern_in_scale(fixture_pattern_in_key) -> PatternInScale:
 
 
 @pytest.fixture()
-def fixture_text_pattern_in_pattern_source() -> dict[str, PatternType]:
+def fixture_test_pattern_in_pattern_source() -> dict[str, PatternType]:
     pattern._pattern_source['test scale'] = Pattern(
         name='test scale',
-        scale_types=['scale 1', 'scale 2'],
+        scale_types={'scale 1', 'scale 2'},
         pattern=[
             RowNotes(
                 quants=['123', '24', '5'],

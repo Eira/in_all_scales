@@ -1,7 +1,6 @@
 """Datatypes connected with patterns anf licks."""
 
 from dataclasses import dataclass
-from typing import Iterable
 
 
 @dataclass
@@ -16,7 +15,7 @@ class PatternType:
     """Base structure for patterns and licks."""
 
     name: str
-    scale_types: Iterable[str]
+    scale_types: set[str]
     pattern: list[RowNotes]
 
 

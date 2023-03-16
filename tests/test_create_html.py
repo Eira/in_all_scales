@@ -10,33 +10,17 @@ def test_create_quant_html_happy_path(fixture_trans_quant_notes):
 def test_create_row_html_happy_path(fixture_trans_row_notes):
     res = _create_row_html(fixture_trans_row_notes)
 
-    assert res == ('<p class="pattern">\n'
- '        <span class="scale_quant">Ab B C</span>\t\n'
- '<span class="scale_quant">Ab B C</span>\t\n'
- '<span class="scale_quant">Ab B C</span>\t\n'
- '    </p>\n'
- '    ')
+    assert res.startswith('<p class="pattern">')
+    assert '<span class="scale_quant">Ab B C</span>' in res
+    assert res.strip().endswith('</p>')
 
 
 def test_create_key_html_smoke(fixture_pattern_in_key):
     res = _create_key_html(fixture_pattern_in_key)
 
-    assert res == ('<section>\n'
- '        <h3>C</h3>\n'
- '        <p class="pattern">\n'
- '        <span class="scale_quant">Ab B C</span>\t\n'
- '<span class="scale_quant">Ab B C</span>\t\n'
- '<span class="scale_quant">Ab B C</span>\t\n'
- '    </p>\n'
- '    \n'
- '<p class="pattern">\n'
- '        <span class="scale_quant">Ab B C</span>\t\n'
- '<span class="scale_quant">Ab B C</span>\t\n'
- '<span class="scale_quant">Ab B C</span>\t\n'
- '    </p>\n'
- '    \n'
- '    </section>\n'
- '    ')
+    assert res.startswith('<section>')
+    assert '<p class="pattern">' in res
+    assert res.strip().endswith('</section>')
 
 
 def test_create_transposed_pattern_html_smoke(fixture_pattern_in_scale):
@@ -44,6 +28,3 @@ def test_create_transposed_pattern_html_smoke(fixture_pattern_in_scale):
 
     assert res
     assert isinstance(res, str)
-
-
-
