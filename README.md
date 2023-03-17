@@ -1,4 +1,4 @@
-# into_all_scales
+# Into all scales
 
 [![linters](https://github.com/Eira/into_all_scales/actions/workflows/linters.yml/badge.svg?branch=main)](https://github.com/Eira/into_all_scales/actions/workflows/linters.yml)
 [![tests](https://github.com/Eira/into_all_scales/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/Eira/into_all_scales/actions/workflows/tests.yml)
