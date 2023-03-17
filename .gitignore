@@ -1,0 +1,4 @@
+results/*
+tests/results/*
+.coverage
+coverage.xml
